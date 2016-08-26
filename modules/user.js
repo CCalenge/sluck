@@ -9,15 +9,17 @@ var bdd = require('./bdd.js');
 
 /**
  * @class User
- * @property {int}  id                        - User id (0 based)
+ * @property {int}  id                        - User id
+ * @property {string} pseudo                  - User pseudo
+ * @property {object} socket                  - User socket
  * @property {boolean}  online                - Online status
  */
 function User(userData) {
     this.id = userData.id;
     this.pseudo = userData.pseudo;
-    this.password = userData.password;
 
-    this.online = true;
+    this.socket = null;
+    this.online = false;
 
     allUsers.push(this);
 };
@@ -30,17 +32,6 @@ function User(userData) {
 User.prototype.destroy = function(){
     var index = allUsers.indexOf(this);
     allUsers.splice(index, 1);
-};
-
-
-/**
- * Create a new User
- * @function
- * @returns {User}
- * @example var bob = user.new();
- */
-exports.new = function(){
-    return new User();
 };
 
 /**
@@ -57,7 +48,6 @@ exports.createUsers = function(){
         console.log(allUsers)
     });
 };
-
 
 
 /**

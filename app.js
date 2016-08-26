@@ -7,3 +7,5 @@ server.listen(8080);
 
 require("./modules/router.js")(app);
 require("./modules/socketIO.js")(server);
+
+require("./modules/user.js").createUsers();

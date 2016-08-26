@@ -5,14 +5,18 @@
  */
 
 var allUsers = [];
+var bdd = require('./bdd.js');
 
 /**
  * @class User
  * @property {int}  id                        - User id (0 based)
  * @property {boolean}  online                - Online status
  */
-function User() {
-    this.id = allUsers.length;
+function User(userData) {
+    this.id = userData.id;
+    this.pseudo = userData.pseudo;
+    this.password = userData.password;
+
     this.online = true;
 
     allUsers.push(this);
@@ -38,6 +42,23 @@ User.prototype.destroy = function(){
 exports.new = function(){
     return new User();
 };
+
+/**
+ * Create registered users
+ * @function
+ * @example user.createUsers()
+ */
+exports.createUsers = function(){
+    bdd.getUsers(function(users) {
+        for (var i = 0; i < users.length; i++) {
+            new User(users[i]);
+        };
+        console.log("users created: ");
+        console.log(allUsers)
+    });
+};
+
+
 
 /**
  * Return number of online users

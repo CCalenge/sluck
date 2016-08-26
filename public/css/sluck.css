@@ -1,0 +1,87 @@
+/* soft reset */
+html,
+body,
+textarea,
+figure,
+label {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: 'Roboto',sans-serif; }
+
+ul,
+ol {
+  padding-left: 2em; }
+
+/* avoid top margins on first content element */
+p:first-child,
+ul:first-child,
+ol:first-child,
+dl:first-child,
+blockquote:first-child,
+pre:first-child,
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0; }
+
+/* avoid margins on nested elements */
+li p,
+li ul,
+li ol {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+/* HTML5 tags */
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+  display: block; }
+
+/* max values */
+img, table, td, blockquote, code, pre, textarea, input, video {
+  max-width: 100%; }
+
+.shadow {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s; }
+
+.shadow:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+
+.round_Button {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  border: none;
+  transition: all 0.4s;
+  cursor: pointer; }
+
+body,
+html {
+  height: 100%; }
+
+.mainContainer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%; }
+
+.leftContainer {
+  width: 200px;
+  background-color: #457fca;
+  min-height: 100%;
+  color: white; }
+
+.rightContainer {
+  width: 100%;
+  min-height: 100%; }
+
+/*# sourceMappingURL=sluck.css.map */

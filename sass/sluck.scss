@@ -1,0 +1,24 @@
+@import "./common/bourbon/_bourbon.scss";
+@import "./archi/base.scss";
+@import "./common/fx.scss";
+@import "./color/color.scss";
+@import "./common/button.scss";
+
+body,
+html {
+    height: 100%;
+}
+.mainContainer {
+    @include display(flex);
+    height: 100%;
+}
+.leftContainer {
+    width: 200px;
+    background-color: $primary_color;
+    min-height: 100%;
+    color: white;
+}
+.rightContainer {
+    width: 100%;
+    min-height: 100%;
+}

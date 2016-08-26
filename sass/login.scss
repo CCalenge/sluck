@@ -1,0 +1,71 @@
+@import "./common/bourbon/_bourbon.scss";
+@import "./archi/base.scss";
+@import "./common/fonts.scss";
+@import "./common/fx.scss";
+@import "./color/color.scss";
+@import "./common/button.scss";
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    .container_Login {
+        height: 100%;
+        width: 100%;
+        background: #457fca;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #457fca , #5691c8);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #457fca , #5691c8);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        font-family: 'futura_black';
+        @include display(flex);
+        @include flex-direction(column);
+        @include align-items(center);
+        justify-content: center;
+        color: white;
+    }
+}
+.container_Logo {
+    text-align: center;
+    .titre {
+        font-size: 8em;
+        margin-bottom: 10px;
+    }
+    .subtitle {
+        font-size: 1.8em;
+    }
+}
+.formLogin {
+    background-color: white;
+    color: $primary_color;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 100px;
+    @include display(flex);
+    @include flex-direction(column);
+    .error{
+        text-align: center;
+    }
+    .labelLogin {
+        display: inline-block;
+        width: 100px;
+    }
+    input {
+        background-color: $primary_color;
+        border: none;
+        border-radius: 3px;
+        color: white;
+    }
+    .buttonLogin {
+        @extend .round_Button;
+        background-color: $primary_color;
+        color: white;
+        margin: auto;
+    }
+    .buttonLogin:hover {
+        @extend .round_Button;
+        background-color: rgb(254, 244, 6);
+        color: $primary_color;
+    }
+}

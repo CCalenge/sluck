@@ -11,21 +11,23 @@
 
 <body>
 
-<div class="mainContainer">
+    <div class="mainContainer">
 
-<aside class="leftContainer">
-<ul class="containerUsers">
-<% for(i=0,c=users.length ; i<c; i++){%>
-<li id="user<%= users[i].id %>"><%= users[i].pseudo %></li>
-<%}%>
-</ul>
-</aside>
+        <aside class="leftContainer">
+            <ul class="containerUsers">
+                <% for( i=0, c=locals.users.length; i<c; i++){%>
+                    <li id="user<%= locals.users[i].id %>">
+                        <%= locals.users[i].pseudo %>
+                    </li>
+                    <%}%>
+            </ul>
+        </aside>
 
-<section class="rightContainer">
+        <section class="rightContainer">
 
-</section>
+        </section>
 
-</div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="socket.io/socket.io.js"></script>

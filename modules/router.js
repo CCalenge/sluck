@@ -28,7 +28,17 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 
 // Middleware check for valid session
 app.use(function(req, res, next){
-    if(req.session.id === null && req.url != '/login') return res.redirect("/login");
+    // no need to check for id, user go to login
+    if(req.url === '/login') return next();
+
+    // if ID is null force route to /login
+    if(req.session.id === null){
+        console.log("session id is null");
+        return res.redirect("/login");
+    };
+
+    // ID is defined and url is not /login
+    // Set up the cookie ID and proceed
     res.cookie('userID', req.session.id, { maxAge: 6000});
     next();
 })
@@ -60,7 +70,7 @@ app.post('/login', function(req, res) {
 
 app.get('/logout', function(req, res){
     req.session.id = null;
-    res.redirect("/login");
+    res.send("logout !");
 });
 
 

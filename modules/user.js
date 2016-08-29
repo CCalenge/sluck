@@ -91,3 +91,17 @@ exports.getUserByID = function(id){
     }
     return false;
 };
+
+/**
+ * Return all users
+ * @function
+ * @returns {table}
+ * @example
+ * var allUsers = user.getAllUsers();
+ * console.log(allUsers) >
+ *      [ User { id: 1, pseudo: 'maxf', socket: null, online: false },
+ *      User { id: 2, pseudo: 'maxdef', socket: null, online: false }]
+ */
+exports.getAllUsers = function(){
+    return allUsers;
+};

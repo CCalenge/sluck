@@ -14,4 +14,8 @@ module.exports = function(io){
     }
 
     socket.emit('init', getCookie('userID'));
+
+    socket.on('setOffline', function(userID){
+        console.log("user ID: "+userID+" is now offline");
+    })
 };

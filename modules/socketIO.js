@@ -28,7 +28,9 @@ io.sockets.on('connection', function(socket) {
     socket.on('disconnect', function () {
         if(User) {
             User.online = false;
-            return console.log(User.pseudo+" disconnect")
+            // We wait 3 sec before broadcasting change as reloading a page will
+            // disconnect then reconnect an user and this should not be considered
+            setTimeout(User.setOffline, 3000, User);
         };
         console.log("Unknown user disconnect")
     });

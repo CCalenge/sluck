@@ -25,6 +25,21 @@ function User(userData) {
 };
 
 /**
+ * Broadcast offline status
+ * @function
+ * @param {User} User
+ *
+ * @example bob.setOffline();
+ */
+User.prototype.setOffline = function(User){
+    if(!User.online){
+        User.socket.broadcast.emit('setOffline', User.id);
+        console.log(User.pseudo+" is set offline");
+    };
+
+};
+
+/**
  * Destroy user
  * @function
  * @example bob.destroy();

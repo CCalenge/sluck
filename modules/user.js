@@ -63,3 +63,16 @@ exports.countOnline = function(){
     }
     return count;
 };
+
+/**
+ * Return user matching ID
+ * @function
+ * @returns {int}
+ * @example var number = user.countOnline();
+ */
+exports.getUserByID = function(id){
+    for (var i = 0; i < allUsers.length; i++){
+        if(allUsers[i].id == id) return allUsers[i]
+    }
+    return false;
+};

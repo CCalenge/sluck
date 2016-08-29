@@ -27,13 +27,13 @@ var connection = mysql.createConnection({
 exports.checkLogin = function(login, callback){
     if (login.pseudo == "" || login.password == "") return callback(false);
 
-    connection.query("SELECT password from users WHERE pseudo = ?",[login.pseudo], function(err, rows, fields){
+    connection.query("SELECT * from users WHERE pseudo = ?",[login.pseudo], function(err, rows, fields){
         if (err){ //Kill the function in case of error
             console.log(err);
             return callback(false);
         };
 
-        if (rows.length > 0 && login.password === rows[0].password) return callback(true);
+        if (rows.length > 0 && login.password === rows[0].password) return callback(rows[0].id);
         callback(false);
     });
 };

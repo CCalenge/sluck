@@ -28,7 +28,8 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 
 // Middleware check for valid session
 app.use(function(req, res, next){
-    if(req.session.user === null && req.url != '/login') return res.redirect("/login");
+    if(req.session.id === null && req.url != '/login') return res.redirect("/login");
+    res.cookie('userID', req.session.id, { maxAge: 6000});
     next();
 })
 
@@ -49,7 +50,7 @@ app.post('/login', function(req, res) {
 
     bdd.checkLogin(login, function(result) {
         if (result) {
-            req.session.user = login.pseudo;
+            req.session.id = result;
             res.redirect("/");
         } else {
             res.render('login.ejs',{error: 'erreur login / password'});
@@ -58,7 +59,7 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/logout', function(req, res){
-    req.session.user = null;
+    req.session.id = null;
     res.redirect("/login");
 });
 

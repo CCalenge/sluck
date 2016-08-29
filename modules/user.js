@@ -25,18 +25,18 @@ function User(userData) {
 };
 
 /**
- * Broadcast offline status
+ * Broadcast offline status.
+ * Should be called with setTimeout.
  * @function
- * @param {User} User
+ * @param {User} User setTimeout third param
  *
- * @example bob.setOffline();
+ * @example setTimeout(User.setOffline, 3000, User);;
  */
 User.prototype.setOffline = function(User){
     if(!User.online){
         User.socket.broadcast.emit('setOffline', User.id);
         console.log(User.pseudo+" is set offline");
     };
-
 };
 
 /**

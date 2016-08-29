@@ -65,10 +65,10 @@ exports.countOnline = function(){
 };
 
 /**
- * Return user matching ID
+ * Return user or false
  * @function
- * @returns {int}
- * @example var number = user.countOnline();
+ * @returns {User | false}
+ * @example var User = user.getUserByID(UserID);
  */
 exports.getUserByID = function(id){
     for (var i = 0; i < allUsers.length; i++){

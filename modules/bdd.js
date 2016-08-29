@@ -14,14 +14,14 @@ var connection = mysql.createConnection({
 });
 
 /**
- * Return true if login successful
+ * Return user ID if login successful or false
  * @function
  * @param {table} login             - {pseudo, password}
  * @param {function} callback       - callback(result)
- * @returns {boolean}
+ * @returns {UserID | false}
  * @example
  * bdd.checkLogin(login, function(result) {
- *     if(result) console.log("succes");
+ *     if(result) console.log("User ID: "+result);
  * });
  */
 exports.checkLogin = function(login, callback){

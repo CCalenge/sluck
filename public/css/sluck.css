@@ -79,6 +79,8 @@ html {
   background-color: #457fca;
   min-height: 100%;
   color: white; }
+  .leftContainer .containerUsers {
+    list-style-type: none; }
 
 .rightContainer {
   width: 100%;

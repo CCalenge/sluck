@@ -14,7 +14,11 @@
 <div class="mainContainer">
 
 <aside class="leftContainer">
-
+<ul class="containerUsers">
+<% for(i=0,c=users.length ; i<c; i++){%>
+<li id="user<%= users[i].id %>"><%= users[i].pseudo %></li>
+<%}%>
+</ul>
 </aside>
 
 <section class="rightContainer">

@@ -15,7 +15,6 @@ var user = require('./user.js');
 
 io.sockets.on('connection', function(socket){
     var User = false;
-    console.log("Unknown user connected");
     
     socket.on('init', function(userID){
         User = user.getUserByID(userID); // Init User var

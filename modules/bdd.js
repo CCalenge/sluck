@@ -91,7 +91,7 @@ exports.registerMessage = function(chanID, message, userID){
  * console => [ RowDataPacket { id, date, message, userID } ]
  */
 exports.getMessages = function(chanID, callback){
-    connection.query("SELECT * FROM chan_"+chanID+" ORDER BY id ASC LIMIT 50", function(err, rows, fields){
+    connection.query("SELECT * FROM chan_"+chanID+" ORDER BY id ASC LIMIT 30", function(err, rows, fields){
         if (err){ //Kill the function in case of error
             console.log(err);
             return callback(false);

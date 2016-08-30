@@ -35,7 +35,6 @@ app.use(function(req, res, next){
 
     // if ID is null force route to /login
     if(req.session.id === null){
-        console.log("session id is null");
         return res.redirect("/login");
     };
 
@@ -49,8 +48,6 @@ app.use(function(req, res, next){
 app.get('/', function(req, res) {
     var userStateArray= userState.userState(req.session.id);
     var currentUser = user.getUserByID(req.session.id);
-    console.log(userStateArray);
-    console.log(req.session.id);
     res.render('sluck.ejs',{currentUser:currentUser, userStateArray: userStateArray});
 });
 

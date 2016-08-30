@@ -82,6 +82,10 @@ html {
   background-color: #457fca;
   min-height: 100%;
   color: white; }
+  .leftContainer .onlineUsers {
+    color: #27fc50; }
+  .leftContainer .offlineUsers {
+    color: #b1b1b1; }
 
 .rightContainer {
   width: 100%;

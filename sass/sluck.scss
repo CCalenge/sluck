@@ -17,6 +17,12 @@ html {
     background-color: $primary_color;
     min-height: 100%;
     color: white;
+    .onlineUsers{
+            color: rgb(39, 252, 80);
+    }
+    .offlineUsers{
+    color:  rgb(177, 177, 177);
+    }
 }
 .rightContainer {
     width: 100%;

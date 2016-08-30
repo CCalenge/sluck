@@ -6,16 +6,19 @@
 
 var user = require('./user.js');
 
-/** Return nested array of users sorted by online status
- * @function
- * @param {int} UserID
- * @returns {array} [[online], [offline]]
- * @example
- * var usersSorted = user.getUsersSorted();
- * console.log(usersSorted) >
- *      [ online [ 'maxdef' ,'maxf', 'nicopan', 'celine'],
- *        offline [ 'stivo', 'luke', 'tifany' ]  ]
- */
+/* Return an array which content two arrays : online and offline users
+* @function
+* @returns [array]
+* @example
+* var userState = user.userState();
+* console.log(totalUsers) >
+*      [ [User { id: 1, pseudo: 'maxoon', sockets: [], online: false },
+  User { id: 2, pseudo: 'nicopan', sockets: [], online: false },
+  User { id: 3, pseudo: 'stivo', sockets: [], online: false } ],
+*        [User { id: 1, pseudo: 'maxoon', sockets: [], online: false },
+  User { id: 2, pseudo: 'nicopan', sockets: [], online: false },
+  User { id: 3, pseudo: 'stivo', sockets: [], online: false } ]]
+*/
 
 exports.getUsersSorted = function(id) {
     var allUsers = user.getAllUsers();

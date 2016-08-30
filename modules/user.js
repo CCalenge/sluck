@@ -166,5 +166,5 @@ exports.getUserByID = function(id){
  *      User { id: 2, pseudo: 'maxdef', socket: null, online: false }]
  */
 exports.getAllUsers = function(){
-    return allUsers;
+    return Array.from(allUsers);
 };

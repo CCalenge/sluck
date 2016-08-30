@@ -94,7 +94,7 @@ User.prototype.setOffline = function(socket){
 User.prototype.removeSocket = function(socket){
     var index = this.sockets.indexOf(socket);
     this.sockets.splice(index, 1);
-    console.log("Remove socket n°"+index+" from user "+this.pseudo+" ("+this.sockets.length+" sockets left)");
+    console.log("Remove socket n°"+(index + 1)+" from user "+this.pseudo+" ("+this.sockets.length+" sockets left)");
 };
 
 

@@ -25,10 +25,33 @@ function User(userData) {
 };
 
 /**
+ * Set User online.
+ * @function
+ * @param {socket} socket
+ * @example User.setOnline(socket);
+ */
+User.prototype.setOnline = function(socket){
+    // User has more then one socket opened
+    // add the one concerned by the init callback and return.
+    if(this.sockets.length > 0){
+        this.sockets.push(socket);
+        console.log(this.pseudo+" add new socket ("+this.sockets.length+" sockets)");
+        return;
+    };
+
+    //User doesn't have any socket
+    //Add it to the array and set him online
+    this.sockets.push(socket);
+    this.online = true;
+    socket.broadcast.emit('setOffline', this.id);
+    console.log(this.pseudo+" is now online ("+countOnline()+" online)");
+};
+
+/**
  * Set User offline.
  * @function
  * @param {socket} socket
- * @example setTimeout(User.setOffline, 3000, User);;
+ * @example User.setOffline(socket);
  */
 User.prototype.setOffline = function(socket){
     // User has more then one socket opened
@@ -53,7 +76,7 @@ User.prototype.setOffline = function(socket){
         socket.broadcast.emit('setOffline', User.id);
         User.removeSocket(socket);
         User.online = false;
-        console.log(User.pseudo+" is set offline");
+        console.log(User.pseudo+" is set offline ("+countOnline()+" online)");
     };
 
     // We wait 3 sec before broadcasting change as reloading a page will
@@ -88,6 +111,22 @@ User.prototype.destroy = function(){
 };
 
 /**
+ * Return number of online users
+ * @function
+ * @returns {int}
+ * @example var number = user.countOnline();
+ */
+function countOnline(){
+    var count = 0;
+    for (var i = 0; i < allUsers.length; i++){
+        if(allUsers[i].online) count++
+    }
+    return count;
+};
+
+exports.countOnline = countOnline;
+
+/**
  * Create registered users
  * @function
  * @example user.createUsers()
@@ -102,20 +141,6 @@ exports.createUsers = function(){
     });
 };
 
-
-/**
- * Return number of online users
- * @function
- * @returns {int}
- * @example var number = user.countOnline();
- */
-exports.countOnline = function(){
-    var count = 0;
-    for (var i = 0; i < allUsers.length; i++){
-        if(allUsers[i].online) count++
-    }
-    return count;
-};
 
 /**
  * Return user or false

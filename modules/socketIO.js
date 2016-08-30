@@ -13,16 +13,12 @@ if(initDone) return; // only run this once
 var io = require('socket.io')(server);
 var user = require('./user.js');
 
-io.sockets.on('connection', function(socket) {
+io.sockets.on('connection', function(socket){
     var User = false;
-    console.log("Unknown user connected");
 
     socket.on('init', function(userID){
-        User = user.getUserByID(userID);
-        User.sockets.push(socket);
-        User.online = true;
-        console.log(User.pseudo+" is connected");
-        console.log(user.countOnline()+" users online");
+        User = user.getUserByID(userID); // Init User var
+        User.setOnline(socket);
     });
 
     socket.on('disconnect', function () {
@@ -31,7 +27,6 @@ io.sockets.on('connection', function(socket) {
             User = false;
             return;
         };
-        console.log("Unknown user disconnect")
     });
 
 });

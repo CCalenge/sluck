@@ -13,23 +13,13 @@ module.exports = function(io){
         if (parts.length == 2) return parts.pop().split(";").shift();
     }
 
-    function onLine(userID){
-        $('.onlineUsers').append($('.user'+userID));
-    }
-
-    function offLine(userID){
-        $('.offlineUsers').append($('.user'+userID));
-    }
-
     socket.emit('init', getCookie('userID'));
 
     socket.on('setOnline', function(userID){
-        console.log("user ID: "+userID+" is now online");
-        onLine(userID);
+        $('.onlineUsers').append($('#user'+userID));
     })
 
     socket.on('setOffline', function(userID){
-        console.log("user ID: "+userID+" is now offline");
-        offline(userID);
+        $('.offlineUsers').append($('#user'+userID));
     })
 };

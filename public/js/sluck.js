@@ -6,7 +6,7 @@
  */
 
 module.exports = function(io){
-    var socket = io.connect('http://192.168.1.245:8080');
+    var socket = io.connect('http://localhost:8080');
 
     function getCookie(name) {
         var value = "; " + document.cookie;

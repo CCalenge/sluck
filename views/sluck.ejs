@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html>
+<!-- recover current user -->
+<% currentUser=locals.currentUser.pseudo %>
+<% listeUsers=locals.userStateArray %>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sluck</title>
-    <link rel="stylesheet" href="/css/sluck.css" media="screen" title="no title" charset="utf-8">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,600' rel='stylesheet' type='text/css'>
-</head>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Sluck</title>
+            <link rel="stylesheet" href="/css/sluck.css" media="screen" title="no title" charset="utf-8">
+            <link href='https://fonts.googleapis.com/css?family=Roboto:400,600' rel='stylesheet' type='text/css'>
+        </head>
 
-<body>
+        <body>
 
-    <div class="mainContainer">
+            <div class="mainContainer">
 
-        <aside class="leftContainer">
-            <ul class="containerUsers">
-                <% for( i=0, c=locals.users.length; i<c; i++){%>
-                    <li id="user<%= locals.users[i].id %>">
-                    <%= locals.users[i].pseudo %>
-                    </li>
-                    <%}%>
-            </ul>
-        </aside>
+                <aside class="leftContainer">
+                    <p class="currentUser">
+                        <%= currentUser %>
+                    </p>
+                    <ul class="onlineUsers">
+                        <% for(i=0 , c= listeUsers[0].length; i<c; i++){%>
+                            <li class "user<%= listeUsers[0][i].id %>">
+                                <%= listeUsers[0][i].pseudo %>
+                            </li>
+                            <%}%>
+                    </ul>
+                    <ul class="offlineUsers">
+                        <% for(i=0 , c= listeUsers[1].length; i<c; i++){%>
+                            <li class "user<%= listeUsers[1][i].id %>">
+                                <%= listeUsers[1][i].pseudo %>
+                            </li>
+                            <%}%>
+                    </ul>
+                </aside>
 
-        <section class="rightContainer">
+                <section class="rightContainer">
 
-        </section>
+                </section>
 
-    </div>
+            </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="socket.io/socket.io.js"></script>
-    <script src="/js/sluck.js"></script>
-</body>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+            <script src="socket.io/socket.io.js"></script>
+            <script src="/js/sluck.js"></script>
+        </body>
 
 </html>

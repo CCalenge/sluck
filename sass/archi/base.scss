@@ -36,7 +36,9 @@ li ol {
     margin-top: 0;
     margin-bottom: 0;
 }
-
+li{
+    list-style-type: none;
+}
 /* HTML5 tags */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
     display: block;

@@ -13,8 +13,8 @@ if (initDone) return; // only run this once
 var session = require('client-sessions');
 var bodyParser = require('body-parser');
 var bdd = require('./bdd.js');
-var user = require('./user.js');
-
+var userState = require('./views.js');
+var user = require ('./user.js');
 
 app.use(session({
     cookieName: 'session',
@@ -47,8 +47,11 @@ app.use(function(req, res, next){
 
 
 app.get('/', function(req, res) {
-    var allUsers= user.getAllUsers();
-    res.render('sluck.ejs',{users:allUsers});
+    var userStateArray= userState.userState(req.session.id);
+    var currentUser = user.getUserByID(req.session.id);
+    console.log(userStateArray);
+    console.log(req.session.id);
+    res.render('sluck.ejs',{currentUser:currentUser, userStateArray: userStateArray});
 });
 
 app.get('/login', function(req, res){

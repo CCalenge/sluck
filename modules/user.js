@@ -11,33 +11,71 @@ var bdd = require('./bdd.js');
  * @class User
  * @property {int}  id                        - User id
  * @property {string} pseudo                  - User pseudo
- * @property {object} socket                  - User socket
+ * @property {array} sockets                  - User sockets
  * @property {boolean}  online                - Online status
  */
 function User(userData) {
     this.id = userData.id;
     this.pseudo = userData.pseudo;
 
-    this.socket = null;
+    this.sockets = [];
     this.online = false;
 
     allUsers.push(this);
 };
 
 /**
- * Broadcast offline status.
- * Should be called with setTimeout.
+ * Set User offline.
  * @function
- * @param {User} User setTimeout third param
- *
+ * @param {socket} socket
  * @example setTimeout(User.setOffline, 3000, User);;
  */
-User.prototype.setOffline = function(User){
-    if(!User.online){
-        User.socket.broadcast.emit('setOffline', User.id);
+User.prototype.setOffline = function(socket){
+    // User has more then one socket opened
+    // remove the one concerned by the disconnect callback and return.
+    if(this.sockets.length > 1){
+        this.removeSocket(socket);
+        return;
+    };
+
+    //This function will be called by the setTimeout
+    var callback = function(data){
+        var User = data.User;
+        var socket = data.socket;
+
+        // User is still online,a new socket has been added
+        if(User.sockets.length > 1){
+            User.removeSocket(socket);
+            return;
+        };
+
+        //User has only one socket left, delete it and set him offline
+        socket.broadcast.emit('setOffline', User.id);
+        User.removeSocket(socket);
+        User.online = false;
         console.log(User.pseudo+" is set offline");
     };
+
+    // We wait 3 sec before broadcasting change as reloading a page will
+    // disconnect then reconnect an user and this should not be considered
+    var User = this;
+    setTimeout(callback, 3000, {User: User, socket: socket});
 };
+
+/**
+ * Remove socket
+ * @function
+ * @param {socket} socket
+ * @example User.removeSocket(socket);
+ */
+User.prototype.removeSocket = function(socket){
+    var index = this.sockets.indexOf(socket);
+    this.sockets.splice(index, 1);
+    console.log("Remove socket n°"+index+" from user "+this.pseudo+" ("+this.sockets.length+" sockets left)");
+};
+
+
+
 
 /**
  * Destroy user

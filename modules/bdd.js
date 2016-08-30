@@ -13,6 +13,11 @@ var connection = mysql.createConnection({
     database: 'sluck'
 });
 
+var errorLog = function(err, rows, fields){
+    if (err) console.log(err);
+};
+
+
 /**
  * Return user ID if login successful or false
  * @function
@@ -53,6 +58,40 @@ exports.checkLogin = function(login, callback){
  */
 exports.getUsers = function(callback){
     connection.query("SELECT * from users", function(err, rows, fields){
+        if (err){ //Kill the function in case of error
+            console.log(err);
+            return callback(false);
+        };
+        callback(rows);
+    });
+};
+
+/**
+ * Register message
+ * @function
+ * @param {int} chanID
+ * @param {string} message
+ * @param {int} userID
+ * @example
+ * bdd.registerMessage(chanID, message, userID);
+ */
+exports.registerMessage = function(chanID, message, userID){
+    connection.query("INSERT INTO chan_"+chanID+" (message, userID) VALUES ('"+message+"', "+userID+")", errorLog);
+};
+
+/**
+ * Return the most recent messages
+ * @function
+ * @param {int} chanID
+ * @param {function} callback
+ * @example
+ * bdd.getUsers(function(users) {
+ *     console.log(users);
+ * });
+ * console => [ RowDataPacket { id, date, message, userID } ]
+ */
+exports.getMessages = function(chanID, callback){
+    connection.query("SELECT * FROM chan_"+chanID+" ORDER BY id ASC LIMIT 50", function(err, rows, fields){
         if (err){ //Kill the function in case of error
             console.log(err);
             return callback(false);

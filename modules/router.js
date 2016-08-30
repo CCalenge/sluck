@@ -34,13 +34,10 @@ app.use(function(req, res, next){
     if(req.url === '/login') return next();
 
     // if ID is null force route to /login
-    if(req.session.id === null){
-        return res.redirect("/login");
-    };
+    if(req.session.id == null) return res.redirect("/login");
 
     // ID is defined and url is not /login
-    // Set up the cookie ID and proceed
-    res.cookie('userID', req.session.id, { maxAge: 6000});
+    res.setHeader('userID', req.session.id);
     next();
 })
 

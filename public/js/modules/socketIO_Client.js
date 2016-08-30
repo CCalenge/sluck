@@ -15,6 +15,10 @@ module.exports = function(io){
 
     socket.emit('init', getCookie('userID'));
 
+    socket.on('setOnline', function(userID){
+        console.log("user ID: "+userID+" is now online");
+    })
+
     socket.on('setOffline', function(userID){
         console.log("user ID: "+userID+" is now offline");
     })

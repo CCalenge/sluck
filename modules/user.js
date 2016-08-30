@@ -43,7 +43,7 @@ User.prototype.setOnline = function(socket){
     //Add it to the array and set him online
     this.sockets.push(socket);
     this.online = true;
-    socket.broadcast.emit('setOffline', this.id);
+    socket.broadcast.emit('setOnline', this.id);
     console.log(this.pseudo+" is now online ("+countOnline()+" online)");
 };
 

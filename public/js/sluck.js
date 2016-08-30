@@ -31,7 +31,7 @@ module.exports = function(io){
 
     socket.on('setOffline', function(userID){
         console.log("user ID: "+userID+" is now offline");
-        offline(userID);
+        offLine(userID);
     })
 };
 

@@ -1,8 +1,0 @@
-node_modules/*
-sass/common/bourbon
-.sass-cache/*
-public/css/*.map
-.DS_Store
-
-docs
-conf.json

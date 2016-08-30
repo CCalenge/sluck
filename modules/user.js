@@ -110,12 +110,6 @@ User.prototype.destroy = function(){
     allUsers.splice(index, 1);
 };
 
-/**
- * Return number of online users
- * @function
- * @returns {int}
- * @example var number = user.countOnline();
- */
 function countOnline(){
     var count = 0;
     for (var i = 0; i < allUsers.length; i++){
@@ -124,6 +118,12 @@ function countOnline(){
     return count;
 };
 
+/**
+ * Return number of online users
+ * @function
+ * @returns {int}
+ * @example var number = user.countOnline();
+ */
 exports.countOnline = countOnline;
 
 /**

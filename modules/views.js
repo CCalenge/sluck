@@ -1,23 +1,23 @@
 /**
- * @file render views
+ * @file Views (util functions)
  * @author MaxFqs, MaxDef
  * @module views
  */
 
 var user = require('./user.js');
 
-/* Return an array which content two arrays : online and offline users
-* @function
-* @returns [array]
-* @example
-* var userState = user.userState();
-* console.log(totalUsers) >
-*      [ online [ 'maxdef' ,'maxf', 'nicopan', 'celine'],
-*        offline [ 'stivo', 'luke', 'tifany' ]  ]
-*/
+/** Return nested array of users sorted by online status
+ * @function
+ * @param {int} UserID
+ * @returns {array} [[online], [offline]]
+ * @example
+ * var usersSorted = user.getUsersSorted();
+ * console.log(usersSorted) >
+ *      [ online [ 'maxdef' ,'maxf', 'nicopan', 'celine'],
+ *        offline [ 'stivo', 'luke', 'tifany' ]  ]
+ */
 
-exports.userState = function(id) {
-
+exports.getUsersSorted = function(id) {
     var allUsers = user.getAllUsers();
     var User = user.getUserByID(id);
 
@@ -26,18 +26,17 @@ exports.userState = function(id) {
 
     var online = [];
     var offline = [];
-    var totalUsers = [];
+    var usersSorted = [];
 
-    for (var i = 0, c = allUsers.length; i < c; i++) {
-
-        if (allUsers[i].online==true) {
+    for(var i = 0, c = allUsers.length; i < c; i++){
+        if (allUsers[i].online==true)
             online.push(allUsers[i]);
-        } else {
+        else
             offline.push(allUsers[i]);
-        }
-    }
-    totalUsers.push(online);
-    totalUsers.push(offline);
+    };
 
-return totalUsers;
+    usersSorted.push(online);
+    usersSorted.push(offline);
+
+return usersSorted;
 }

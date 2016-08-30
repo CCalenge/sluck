@@ -13,7 +13,7 @@ if (initDone) return; // only run this once
 var session = require('client-sessions');
 var bodyParser = require('body-parser');
 var bdd = require('./bdd.js');
-var userState = require('./views.js');
+var views = require('./views.js');
 var user = require ('./user.js');
 
 app.use(session({
@@ -46,9 +46,9 @@ app.use(function(req, res, next){
 
 
 app.get('/', function(req, res) {
-    var userStateArray= userState.userState(req.session.id);
+    var usersSorted = views.getUsersSorted(req.session.id);
     var currentUser = user.getUserByID(req.session.id);
-    res.render('sluck.ejs',{currentUser:currentUser, userStateArray: userStateArray});
+    res.render('sluck.ejs',{currentUser:currentUser, usersSorted: usersSorted});
 });
 
 app.get('/login', function(req, res){

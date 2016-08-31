@@ -58,12 +58,6 @@ function showMessage(data){
 
 };
 
-
-   function showMessage(data){
-       var containerMessage = $('.messageContainer');
-       containerMessage.append("<div>"+data[0].message+"</div>");
-    }
-
 },{"./user.js":4}],3:[function(require,module,exports){
 /**
  * @file SocketIO Client
@@ -72,7 +66,8 @@ function showMessage(data){
  */
 
 module.exports = function(io){
-    var socket = io.connect('http://localhost:8080');
+    // var socket = io.connect('http://localhost:8080');
+    var socket = io.connect('http://192.168.1.245:8080');
     var User = require('./user.js').getUser();
 
     User.socket = socket;

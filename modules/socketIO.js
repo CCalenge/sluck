@@ -30,17 +30,7 @@ io.sockets.on('connection', function(socket){
         };
     });
 
-    socket.on('registerMessage', function(data){
-        var getMessageCallback = function(data){
-            socket.emit('newMessage', data);
-            socket.broadcast.emit('newMessage', data);
-        };
-        var registerCallback = function(id){
-            bdd.getMessageByID({chanID: 1, id: id}, getMessageCallback);
-        };
-
-        bdd.registerMessage({chanID: data.chanID, message: data.message, userID: User.id}, registerCallback);
-    });
+    socket.on('registerMessage', function(data){ User.registerMessage(data) });
 
 });
 

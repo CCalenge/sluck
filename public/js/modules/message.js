@@ -5,8 +5,12 @@ module.exports = function(){
     var currentUser = user.getUser();
 
     // on form submit , send event with message
-    $('.formMessage').on('submit',function(){
+    $('.submitMessage').on('click',function(){
         var message = $('#message').val();
         currentUser.socket.emit('registerMessage', {chanID: 1, message: message});
     });
+
+    currentUser.socket.on('newMessage', function(data){
+        console.log(data)
+    })
 };

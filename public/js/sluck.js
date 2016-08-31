@@ -146,6 +146,19 @@ exports.getUserByID = function(userID){
 },{}],5:[function(require,module,exports){
 
 $(document).ready(function(){
+
+    // styling js code, need to have his proprer module
+    var $window = $(window);
+    var $header = $('.header');
+    var $mainContainer = $('.mainContainer');
+
+    $mainContainer.height($window.height() - $header.height());
+
+    $window.resize(function() {
+        $mainContainer.height($window.height() - $header.height());
+    });
+
+
     var httpRequest = require('../modules/httpRequest.js');
     // Wait for the request to finish before init the modules
     httpRequest.getUserID(function(userID){
@@ -154,17 +167,6 @@ $(document).ready(function(){
 
         require('../modules/message.js')();
     });
-
-
-
-
-
-
-
-
-
-
-
 });
 
 },{"../modules/httpRequest.js":1,"../modules/message.js":2,"../modules/socketIO.js":3,"../modules/user.js":4}]},{},[5]);

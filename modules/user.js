@@ -85,6 +85,24 @@ User.prototype.setOffline = function(socket){
     setTimeout(callback, 3000, {User: User, socket: socket});
 };
 
+User.prototype.registerMessage = function(data){
+    var User = this;
+    
+    var getMessageCallback = function(data){
+        User.sockets[0].emit('newMessage', data);
+        User.sockets[0].broadcast.emit('newMessage', data);
+    };
+
+    var registerCallback = function(id){
+        bdd.getMessageByID({chanID: 1, id: id}, getMessageCallback);
+    };
+
+    bdd.registerMessage({chanID: data.chanID, message: data.message, userID: User.id}, registerCallback);
+};
+
+
+
+
 /**
  * Remove socket
  * @function

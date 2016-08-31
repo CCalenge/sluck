@@ -66,18 +66,31 @@ exports.getUsers = function(callback){
     });
 };
 
-/**
- * Register message
- * @function
- * @param {int} chanID
- * @param {string} message
- * @param {int} userID
- * @example
- * bdd.registerMessage(chanID, message, userID);
- */
-exports.registerMessage = function(chanID, message, userID){
-    connection.query("INSERT INTO chan_"+chanID+" (message, userID) VALUES ('"+message+"', "+userID+")", errorLog);
+exports.registerMessage = function(data, callback){
+    connection.query("INSERT INTO chan_"+data.chanID+" (message, userID) VALUES ('"+data.message+"', "+data.userID+")",
+    function(err, rows, fields){
+        if (err){ //Kill the function in case of error
+            console.log(err);
+            return callback(false);
+        };
+        callback(rows.insertId);
+    });
 };
+
+exports.getMessageByID = function(data, callback){
+    connection.query("SELECT * from chan_"+data.chanID+" WHERE id = "+data.id, function(err, rows, fields){
+        if (err){ //Kill the function in case of error
+            console.log(err);
+            return callback(false);
+        };
+        callback(rows);
+    });
+}
+
+
+
+
+
 
 /**
  * Return the most recent messages

@@ -6,17 +6,10 @@
 
 module.exports = function(io){
     var socket = io.connect('http://192.168.1.245:8080');
+    var User = require('./user.js').getUser();
 
-    // Get userID from header
-    var req = new XMLHttpRequest();
-    req.open('GET', document.location, true);
-    req.onreadystatechange = function(aEvt){
-        if (req.readyState == 4) {
-            var userID = req.getResponseHeader("userID");
-            socket.emit('init', userID);
-        };
-    };
-    req.send(null);
+    User.socket = socket;
+    socket.emit('init', User.id);
 
     // Socket event listener
     socket.on('setOnline', function(userID){

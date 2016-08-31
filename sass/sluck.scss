@@ -56,7 +56,7 @@ $hearderHeight: 50px;
 
     .messageContainer{
         height:calc(100% - 125px);
-        padding: 25px 25px 0px 25px;
+        padding: 25px 5% 0px 5%;
         max-width: 100%;
         overflow: auto;
         overflow-x: auto;
@@ -109,4 +109,19 @@ $hearderHeight: 50px;
             color: rgb(129, 129, 118);
         }
     }
+}
+.containerMessage{
+    margin-bottom: 15px;
+    width: 90%;
+    .messageAuthor{
+        font-weight: bold;
+        font-size: 1.1em;
+        .dateMessage{
+            margin-left: 15px;
+            color: rgb(149, 149, 149);
+            font-size: 0.8em;
+            font-style: italic;
+        }
+    }
+
 }

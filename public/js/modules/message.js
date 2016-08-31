@@ -7,12 +7,24 @@ module.exports = function() {
 
     // get the current user
     var currentUser = user.getUser();
+    
+    //on press enter= post the message
+    $(document).keypress(function(e) {
+        if (e.which == 13) {
+            var message = $('#message').val();
+            checkMessage(message);
+        }
+    });
 
     // on form submit , send event with message
     $('.submitMessage').on('click', function() {
-        
-        var message = $('#message').val();
 
+        var message = $('#message').val();
+        checkMessage(message);
+
+    });
+
+    function checkMessage(message) {
         if (message != '') {
             $('.submitMessage').text('+');
             currentUser.socket.emit('registerMessage', {
@@ -28,10 +40,7 @@ module.exports = function() {
             }, 2000);
         }
 
-
-    });
-
-
+    }
 
     currentUser.socket.on('newMessage', function(data) {
         showMessage(data);

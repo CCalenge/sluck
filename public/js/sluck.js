@@ -28,30 +28,41 @@ module.exports = function() {
     // get the current user
     var currentUser = user.getUser();
 
-    // on form submit , send event with message
-    $('.submitMessage').on('click', function() {
-        
+    $(document).keypress(function(e) {
+    if(e.which == 13) {
         var message = $('#message').val();
 
-        if (message != '') {
-            $('.submitMessage').text('+');
-            currentUser.socket.emit('registerMessage', {
-                chanID: 1,
-                message: message
-            });
-            $('#message').val('');
-        } else {
-            $('.submitMessage').text('!');
-            $('.alert').show();
-            setTimeout(function() {
-                $(".alert").fadeOut();
-            }, 2000);
-        }
+        checkMessage(message);
+        alert('You pressed enter!');
+    }
+});
 
+    // on form submit , send event with message
+    $('.submitMessage').on('click', function() {
+
+        var message = $('#message').val();
+
+        checkMessage(message);
 
     });
 
+function checkMessage(message){
+    if (message != '') {
+        $('.submitMessage').text('+');
+        currentUser.socket.emit('registerMessage', {
+            chanID: 1,
+            message: message
+        });
+        $('#message').val('');
+    } else {
+        $('.submitMessage').text('!');
+        $('.alert').show();
+        setTimeout(function() {
+            $(".alert").fadeOut();
+        }, 2000);
+    }
 
+}
 
     currentUser.socket.on('newMessage', function(data) {
         showMessage(data);
@@ -91,8 +102,8 @@ module.exports = function() {
  */
 
 module.exports = function(io){
-    // var socket = io.connect('http://localhost:8080');
-    var socket = io.connect('http://192.168.1.245:8080');
+    var socket = io.connect('http://localhost:8080');
+    // var socket = io.connect('http://192.168.1.245:8080');
     var User = require('./user.js').getUser();
 
     User.socket = socket;

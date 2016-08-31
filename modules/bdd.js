@@ -67,7 +67,7 @@ exports.getUsers = function(callback){
 };
 
 exports.registerMessage = function(data, callback){
-    connection.query("INSERT INTO chan_"+data.chanID+" (message, userID, date_creation) VALUES ('"+data.message+"', "+data.userID+",NOW())",
+    connection.query("INSERT INTO chan_"+data.chanID+" (message, userID, date) VALUES ('"+data.message+"', "+data.userID+",NOW())",
     function(err, rows, fields){
         if (err){ //Kill the function in case of error
             console.log(err);

@@ -8,21 +8,25 @@
 module.exports = function(io){
     var socket = io.connect('http://192.168.1.245:8080');
 
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-    }
+    // Get userID from header
+    var req = new XMLHttpRequest();
+    req.open('GET', document.location, true);
+    req.onreadystatechange = function(aEvt){
+        if (req.readyState == 4) {
+            var userID = req.getResponseHeader("userID");
+            socket.emit('init', userID);
+        };
+    };
+    req.send(null);
 
-    socket.emit('init', getCookie('userID'));
-
+    // Socket event listener
     socket.on('setOnline', function(userID){
         $('.onlineUsers').append($('#user'+userID));
-    })
+    });
 
     socket.on('setOffline', function(userID){
         $('.offlineUsers').append($('#user'+userID));
-    })
+    });
 };
 
 },{}],2:[function(require,module,exports){

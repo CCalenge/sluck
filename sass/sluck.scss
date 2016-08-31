@@ -7,24 +7,55 @@
 body,
 html {
     height: 100%;
+    width: 100%;
 }
+
 .mainContainer {
     @include display(flex);
     height: 100%;
-}
-.leftContainer {
-    width: 200px;
-    background-color: $primary_color;
-    min-height: 100%;
-    color: white;
-    .onlineUsers{
-            color: rgb(39, 252, 80);
-    }
-    .offlineUsers{
-    color:  rgb(177, 177, 177);
-    }
-}
-.rightContainer {
     width: 100%;
-    min-height: 100%;
+}
+
+.leftContainer {
+    width: 180px;
+    background-color: $primary_color;
+    color: white;
+    padding-left: 20px;
+    .onlineUsers {
+        color: rgb(39, 252, 80);
+    }
+    .offlineUsers {
+        color: rgb(177, 177, 177);
+    }
+}
+
+.rightContainer {
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(center);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .inputMessage {
+        position: absolute;
+        bottom: 2%;
+        width: 90%;
+        height: 75px;
+        display: flex;
+        .submitMessage {
+            height: 100%;
+            width: 10%;
+            position: relative;
+            border: none;
+            background-color: $primary_color;
+            color: white;
+        }
+        #message {
+            width: 90%;
+            border-radius: 5px;
+            height: 65px;
+            padding: 5px;
+            border: none;
+        }
+    }
 }

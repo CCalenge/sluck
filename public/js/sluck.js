@@ -27,7 +27,7 @@ module.exports = function() {
 
     // get the current user
     var currentUser = user.getUser();
-    
+
     //on press enter= post the message
     $(document).keypress(function(e) {
         if (e.which == 13) {
@@ -45,7 +45,8 @@ module.exports = function() {
     });
 
     function checkMessage(message) {
-        if (message != '') {
+
+        if (message.trim() != '') {
             $('.submitMessage').text('+');
             currentUser.socket.emit('registerMessage', {
                 chanID: 1,
@@ -100,8 +101,8 @@ module.exports = function() {
  */
 
 module.exports = function(io){
-    var socket = io.connect('http://localhost:8080');
-    // var socket = io.connect('http://192.168.1.245:8080');
+    // var socket = io.connect('http://localhost:8080');
+    var socket = io.connect('http://192.168.1.245:8080');
     var User = require('./user.js').getUser();
 
     User.socket = socket;

@@ -123,5 +123,9 @@ $hearderHeight: 50px;
             font-style: italic;
         }
     }
+    .message{
+        max-width: 100%;
+        word-wrap: break-word;
+    }
 
 }

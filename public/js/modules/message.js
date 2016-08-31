@@ -7,7 +7,7 @@ module.exports = function() {
 
     // get the current user
     var currentUser = user.getUser();
-    
+
     //on press enter= post the message
     $(document).keypress(function(e) {
         if (e.which == 13) {
@@ -25,7 +25,8 @@ module.exports = function() {
     });
 
     function checkMessage(message) {
-        if (message != '') {
+
+        if (message.trim() != '') {
             $('.submitMessage').text('+');
             currentUser.socket.emit('registerMessage', {
                 chanID: 1,

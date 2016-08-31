@@ -187,5 +187,8 @@ html {
       color: #959595;
       font-size: 0.8em;
       font-style: italic; }
+  .containerMessage .message {
+    max-width: 100%;
+    word-wrap: break-word; }
 
 /*# sourceMappingURL=sluck.css.map */

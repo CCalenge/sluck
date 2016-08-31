@@ -1,28 +1,51 @@
-module.exports = function(){
+module.exports = function() {
+
+    //alert for the empty message
+    $('.alert').hide();
+
     var user = require('./user.js');
 
     // get the current user
     var currentUser = user.getUser();
 
     // on form submit , send event with message
-    $('.submitMessage').on('click',function(){
+    $('.submitMessage').on('click', function() {
+        
         var message = $('#message').val();
-        currentUser.socket.emit('registerMessage', {chanID: 1, message: message});
-        $('#message').val('');
+
+        if (message != '') {
+            $('.submitMessage').text('+');
+            currentUser.socket.emit('registerMessage', {
+                chanID: 1,
+                message: message
+            });
+            $('#message').val('');
+        } else {
+            $('.submitMessage').text('!');
+            $('.alert').show();
+            setTimeout(function() {
+                $(".alert").fadeOut();
+            }, 2000);
+        }
+
+
     });
 
-    currentUser.socket.on('newMessage', function(data){
+
+
+    currentUser.socket.on('newMessage', function(data) {
         showMessage(data);
+
     });
 
-    function showMessage(dataArray){
+    function showMessage(dataArray) {
+
         var data = dataArray[0];
         var containerMessage = document.getElementsByClassName('messageContainer');
         var article = document.createElement('article');
         var pseudo = document.createElement('p');
         var date = document.createElement('span');
         var message = document.createElement('p');
-
         var User = user.getUserByID(data.userID);
         pseudo.innerHTML = User.pseudo;
         message.innerHTML = data.message;
@@ -35,5 +58,7 @@ module.exports = function(){
         article.appendChild(pseudo);
         article.appendChild(message);
         containerMessage[0].appendChild(article);
-    };
+    }
+
+
 };

@@ -5,4 +5,5 @@ public/css/*.map
 .DS_Store
 
 docs
-conf.json
+docServer.json
+docClient.json

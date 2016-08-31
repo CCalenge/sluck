@@ -111,15 +111,6 @@ html {
   -moz-flex-direction: column;
   flex-direction: column;
   -ms-flex-direction: column;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  box-align: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -o-align-items: center;
-  align-items: center;
-  -ms-flex-align: center;
   width: 100%;
   height: 100%;
   position: relative;
@@ -130,7 +121,8 @@ html {
     width: 90%;
     height: 75px;
     display: flex;
-    border-radius: 10px; }
+    border-radius: 10px;
+    margin-left: 5%; }
     .rightContainer .formMessage .submitMessage {
       height: 100%;
       width: 10%;

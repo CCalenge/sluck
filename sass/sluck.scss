@@ -32,7 +32,6 @@ html {
 .rightContainer {
     @include display(flex);
     @include flex-direction(column);
-    @include align-items(center);
     width: 100%;
     height: 100%;
     position: relative;
@@ -44,6 +43,7 @@ html {
         height: 75px;
         display: flex;
         border-radius: 10px;
+        margin-left: 5%;
         .submitMessage {
             height: 100%;
             width: 10%;

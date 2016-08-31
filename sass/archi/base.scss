@@ -19,6 +19,9 @@ ul
     margin:0px !important;
     padding: 0px !important;
 }
+button:focus{
+    outline: 0 !important;
+}
 /* avoid top margins on first content element */
 p:first-child,
 ul:first-child,

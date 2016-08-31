@@ -48,4 +48,11 @@ exports.getAllUsers = function(){
 
 exports.getUser = function(){
     return currentUser;
-}
+};
+
+exports.getUserByID = function(userID){
+    for (var i = 0; i < allUsers.length; i++){
+        if(allUsers[i].id == userID) return allUsers[i]
+    };
+    return false;
+};

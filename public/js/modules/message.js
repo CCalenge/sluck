@@ -22,8 +22,10 @@ module.exports = function(){
         var pseudo = document.createElement('p');
         var date = document.createElement('span');
         var message = document.createElement('p');
-        pseudo.innerHTML = "UserID ["+data.id+"]";
-        message.innerHTML =data.message;
+
+        var User = user.getUserByID(data.userID);
+        pseudo.innerHTML = User.pseudo;
+        message.innerHTML = data.message;
         date.innerHTML = data.date;
         article.classList.add("containerMessage");
         pseudo.classList.add("messageAuthor");

@@ -42,8 +42,10 @@ module.exports = function(){
         var pseudo = document.createElement('p');
         var date = document.createElement('span');
         var message = document.createElement('p');
-        pseudo.innerHTML = "UserID ["+data.id+"]";
-        message.innerHTML =data.message;
+
+        var User = user.getUserByID(data.userID);
+        pseudo.innerHTML = User.pseudo;
+        message.innerHTML = data.message;
         date.innerHTML = data.date;
         article.classList.add("containerMessage");
         pseudo.classList.add("messageAuthor");
@@ -132,7 +134,14 @@ exports.getAllUsers = function(){
 
 exports.getUser = function(){
     return currentUser;
-}
+};
+
+exports.getUserByID = function(userID){
+    for (var i = 0; i < allUsers.length; i++){
+        if(allUsers[i].id == userID) return allUsers[i]
+    };
+    return false;
+};
 
 },{}],5:[function(require,module,exports){
 

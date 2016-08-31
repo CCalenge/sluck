@@ -78,7 +78,7 @@ exports.registerMessage = function(data, callback){
 };
 
 exports.getMessageByID = function(data, callback){
-    connection.query("SELECT pseudo,message,id,userID,DATE_FORMAT(date, '%d/%m/%y à %Hh%min%ss') AS date from chan_"+data.chanID+" WHERE id = "+data.id, function(err, rows, fields){
+    connection.query("SELECT message,id,userID,DATE_FORMAT(date, '%d/%m/%y à %Hh%min%ss') AS date from chan_"+data.chanID+" WHERE id = "+data.id, function(err, rows, fields){
         if (err){ //Kill the function in case of error
             console.log(err);
             return callback(false);

@@ -27,42 +27,40 @@ module.exports = function() {
 
     // get the current user
     var currentUser = user.getUser();
-
+    
+    //on press enter= post the message
     $(document).keypress(function(e) {
-    if(e.which == 13) {
-        var message = $('#message').val();
-
-        checkMessage(message);
-        alert('You pressed enter!');
-    }
-});
+        if (e.which == 13) {
+            var message = $('#message').val();
+            checkMessage(message);
+        }
+    });
 
     // on form submit , send event with message
     $('.submitMessage').on('click', function() {
 
         var message = $('#message').val();
-
         checkMessage(message);
 
     });
 
-function checkMessage(message){
-    if (message != '') {
-        $('.submitMessage').text('+');
-        currentUser.socket.emit('registerMessage', {
-            chanID: 1,
-            message: message
-        });
-        $('#message').val('');
-    } else {
-        $('.submitMessage').text('!');
-        $('.alert').show();
-        setTimeout(function() {
-            $(".alert").fadeOut();
-        }, 2000);
-    }
+    function checkMessage(message) {
+        if (message != '') {
+            $('.submitMessage').text('+');
+            currentUser.socket.emit('registerMessage', {
+                chanID: 1,
+                message: message
+            });
+            $('#message').val('');
+        } else {
+            $('.submitMessage').text('!');
+            $('.alert').show();
+            setTimeout(function() {
+                $(".alert").fadeOut();
+            }, 2000);
+        }
 
-}
+    }
 
     currentUser.socket.on('newMessage', function(data) {
         showMessage(data);

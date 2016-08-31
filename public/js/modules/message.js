@@ -11,6 +11,24 @@ module.exports = function(){
     });
 
     currentUser.socket.on('newMessage', function(data){
-        console.log(data)
+        console.log(data);
+        showMessage(data);
     })
 };
+
+
+   function showMessage(data){
+
+       var containerMessage = $('.messageContainer');
+       var article = document.createElement('article').addClass('containerMessage');
+       var pseudo = document.createElement('p').addClass('pseudo');
+       var date = document.createElement('span').addClass('messageDate');
+       var message = document.createElement('p').addClass('messageContent');
+       pseudo.innerHTML = data[0].id;
+       message.innerHTML = data[0].message;
+       date.innerHTML = data[0].date;
+       pseudo.appendChild(date);
+       article.appendChild(pseudo);
+       article.appendChild(message);
+       containerMessage.appendChild(article);
+    }

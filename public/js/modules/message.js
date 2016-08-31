@@ -1,11 +1,12 @@
+module.exports = function(){
+    var user = require('./user.js');
 
-var user = require('./user.js');
+    // get the current user
+    var currentUser = user.getUser();
 
-// get the current user
-var currentUser = user.getUser();
-
-// on form submit , send event with message
-$('.formMessage').on('submit',function(){
-  var message = $('#message').val();
-  currentUser.socket.emit('newMessage',message);
-})
+    // on form submit , send event with message
+    $('.formMessage').on('submit',function(){
+        var message = $('#message').val();
+        currentUser.socket.emit('registerMessage', {chanID: 1, message: message});
+    });
+};

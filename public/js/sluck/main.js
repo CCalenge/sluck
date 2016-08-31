@@ -5,6 +5,8 @@ $(document).ready(function(){
     httpRequest.getUserID(function(userID){
         require('../modules/user.js').createUsers(userID);
         require('../modules/socketIO.js')(io);
+
+        require('../modules/message.js')();
     });
 
 

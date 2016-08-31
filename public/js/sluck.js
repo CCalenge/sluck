@@ -18,6 +18,20 @@ exports.getUserID = function(callback){
 };
 
 },{}],2:[function(require,module,exports){
+module.exports = function(){
+    var user = require('./user.js');
+
+    // get the current user
+    var currentUser = user.getUser();
+
+    // on form submit , send event with message
+    $('.formMessage').on('submit',function(){
+        var message = $('#message').val();
+        currentUser.socket.emit('registerMessage', {chanID: 1, message: message});
+    });
+};
+
+},{"./user.js":4}],3:[function(require,module,exports){
 /**
  * @file SocketIO Client
  * @author MaxFqs, MaxDef
@@ -41,7 +55,7 @@ module.exports = function(io){
     });
 };
 
-},{"./user.js":3}],3:[function(require,module,exports){
+},{"./user.js":4}],4:[function(require,module,exports){
 /**
  * @file User (client)
  * @author MaxFqs, MaxDef
@@ -94,7 +108,7 @@ exports.getUser = function(){
     return currentUser;
 }
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 
 $(document).ready(function(){
     var httpRequest = require('../modules/httpRequest.js');
@@ -102,6 +116,8 @@ $(document).ready(function(){
     httpRequest.getUserID(function(userID){
         require('../modules/user.js').createUsers(userID);
         require('../modules/socketIO.js')(io);
+
+        require('../modules/message.js')();
     });
 
 
@@ -116,4 +132,4 @@ $(document).ready(function(){
 
 });
 
-},{"../modules/httpRequest.js":1,"../modules/socketIO.js":2,"../modules/user.js":3}]},{},[4]);
+},{"../modules/httpRequest.js":1,"../modules/message.js":2,"../modules/socketIO.js":3,"../modules/user.js":4}]},{},[5]);

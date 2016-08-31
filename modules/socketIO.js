@@ -11,11 +11,12 @@ module.exports = function(server){
 if(initDone) return; // only run this once
 
 var io = require('socket.io')(server);
+var bdd = require('./bdd.js');
 var user = require('./user.js');
 
 io.sockets.on('connection', function(socket){
     var User = false;
-    
+
     socket.on('init', function(userID){
         User = user.getUserByID(userID); // Init User var
         User.setOnline(socket);
@@ -27,6 +28,10 @@ io.sockets.on('connection', function(socket){
             User = false;
             return;
         };
+    });
+
+    socket.on('registerMessage', function(data){
+        bdd.registerMessage(data.chanID, data.message, User.id);
     });
 
 });

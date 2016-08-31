@@ -1,6 +1,7 @@
 node_modules/*
 sass/common/bourbon
 .sass-cache/*
+sass/.sass-cache/*
 public/css/*.map
 .DS_Store
 

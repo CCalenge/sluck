@@ -3,6 +3,7 @@ module.exports = function() {
     //alert for the empty message
     $('.alert').hide();
 
+
     var user = require('./user.js');
 
     // get the current user
@@ -33,6 +34,7 @@ module.exports = function() {
                 message: message
             });
             $('#message').val('');
+
         } else {
             $('.submitMessage').text('!');
             $('.alert').show();
@@ -45,13 +47,15 @@ module.exports = function() {
 
     currentUser.socket.on('newMessage', function(data) {
         showMessage(data);
+        var containerMessage = document.getElementById('messageContainer');
+        containerMessage.scrollTop = (containerMessage.scrollHeight)-500;
 
     });
 
     function showMessage(dataArray) {
 
         var data = dataArray[0];
-        var containerMessage = document.getElementsByClassName('messageContainer');
+        var containerMessage = document.getElementById('messageContainer');
         var article = document.createElement('article');
         var pseudo = document.createElement('p');
         var date = document.createElement('span');
@@ -67,7 +71,7 @@ module.exports = function() {
         pseudo.appendChild(date);
         article.appendChild(pseudo);
         article.appendChild(message);
-        containerMessage[0].appendChild(article);
+        containerMessage.appendChild(article);
     }
 
 

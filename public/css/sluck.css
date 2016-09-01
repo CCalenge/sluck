@@ -126,7 +126,7 @@ html {
   height: 100%;
   position: relative;
   border-radius: 10px; }
-  .rightContainer .messageContainer {
+  .rightContainer #messageContainer {
     height: calc(100% - 125px);
     padding: 25px 5% 0px 5%;
     max-width: 100%;

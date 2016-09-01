@@ -118,7 +118,8 @@ html {
   background-color: #EFEFEA;
   color: white;
   padding-left: 20px;
-  border-right: 1px solid grey; }
+  border-right: 1px solid grey;
+  padding-top: 20px; }
   .leftContainer #currentUser {
     color: black; }
   .leftContainer .onlineUsers {

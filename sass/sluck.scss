@@ -9,7 +9,6 @@ html {
     height: 100%;
     width: 100%;
 }
-
 $hearderHeight: 50px;
 
 .header {
@@ -18,8 +17,18 @@ $hearderHeight: 50px;
     height: $hearderHeight;
     width: 100%;
     background-color: $primary_color;
-
+    @include display(flex);
+    @include align-items(center);
+    color: white;
+    #iconeUser{
+        width: 25px;
+        margin-left: 20px;
+    }
+    #currentUser {
+        margin-left: 10px;
+    }
 }
+
 .mainContainer {
     @include display(flex);
     height: 500px; // mod in main.js to fit window size
@@ -28,10 +37,9 @@ $hearderHeight: 50px;
 
 .leftContainer {
     width: 180px;
-    background-color:  #EFEFEA;
+    background-color: #EFEFEA;
     color: white;
     padding-left: 20px;
-
     border-right: 1px solid grey;
 
     #currentUser {
@@ -41,6 +49,7 @@ $hearderHeight: 50px;
     .onlineUsers {
         color: rgb(39, 252, 80);
     }
+
     .offlineUsers {
         color: rgb(177, 177, 177);
     }
@@ -54,22 +63,24 @@ $hearderHeight: 50px;
     position: relative;
     border-radius: 10px;
 
-    #messageContainer{
-        height:calc(100% - 125px);
-        padding: 25px 5% 0px 5%;
+    #messageContainer {
+        height: calc(100% - 125px);
+        padding: 25px 5% 0;
         max-width: 100%;
         overflow: auto;
         overflow-x: auto;
     }
+
     .formMessage {
         position: absolute;
-        bottom:25px;
+        bottom: 25px;
         width: 90%;
         height: 75px;
         display: flex;
         border-radius: 10px;
         margin-left: 5%;
-        .alert{
+
+        .alert {
             position: fixed;
             height: 25px;
             width: 100px;
@@ -81,6 +92,7 @@ $hearderHeight: 50px;
             border-radius: 5px;
             padding: 10px;
         }
+
         .submitMessage {
             height: 100%;
             width: 10%;
@@ -93,11 +105,13 @@ $hearderHeight: 50px;
             font-size: 2em;
             transition: all 0.3s;
         }
-        .submitMessage:hover{
-            background-color:white;
+
+        .submitMessage:hover {
+            background-color: white;
             color: $primary_color;
             cursor: pointer;
         }
+
         #message {
             width: 90%;
             height: 65px;
@@ -110,22 +124,25 @@ $hearderHeight: 50px;
         }
     }
 }
-.containerMessage{
+
+.containerMessage {
     margin-bottom: 15px;
     width: 90%;
-    .messageAuthor{
+
+    .messageAuthor {
         font-weight: bold;
         font-size: 1.1em;
-        .dateMessage{
+
+        .dateMessage {
             margin-left: 15px;
             color: rgb(149, 149, 149);
             font-size: 0.8em;
             font-style: italic;
         }
     }
-    .message{
+
+    .message {
         max-width: 100%;
         word-wrap: break-word;
     }
-
 }

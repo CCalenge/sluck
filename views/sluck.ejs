@@ -15,15 +15,16 @@
 <body>
 
     <div class="header shadow">
-
+        <img src="images/iconeUser.svg" id="iconeUser"/>
+        <p id="currentUser">
+            <%= currentUser %>
+        </p>
     </div>
 
     <div class="mainContainer">
 
         <aside class="leftContainer">
-            <p id="currentUser">
-                <%= currentUser %>
-            </p>
+
             <ul class="onlineUsers">
                 <% for(i=0 , c= listeUsers[0].length; i<c; i++){%>
                     <li id="user<%= listeUsers[0][i].id %>">

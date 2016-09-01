@@ -20,7 +20,9 @@
     "buildJS": "browserify public/js/sluck/main.js > public/js/sluck.js",
     "buildCSS": "sass sass/sluck.scss:css/sluck.css",
     "watchJS": "watchify public/js/sluck/main.js -o public/js/sluck.js",
-    "watchSASS": "sass --watch sass/sluck.scss:css/sluck.css",
+    "watchLoginSass": "sass --watch sass/login.scss:public/css/login.css --style compressed",
+    "watchSluckSass": "sass --watch sass/sluck.scss:public/css/sluck.css --style compressed",
+    "watchSASS": "npm run watchLoginSass & npm run watchSluckSass",
     "dev":"npm run watchJS & npm run watchSASS & nodemon --config nodemon.json app.js",
     "server": "npm run git && node app.js"
   },

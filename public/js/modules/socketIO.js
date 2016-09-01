@@ -6,7 +6,7 @@
 
 module.exports = function(io){
     var host = require('./host.js');
-    var socket = io.connect(host);
+    var socket = io.connect(host.getHost());
     var User = require('./user.js').getUser();
 
     User.socket = socket;

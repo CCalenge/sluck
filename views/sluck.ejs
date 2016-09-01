@@ -2,62 +2,85 @@
 <html>
 <!-- recover current user -->
 <% currentUser=locals.currentUser.pseudo %>
-<% listeUsers=locals.usersSorted %>
+    <% listeUsers=locals.usersSorted %>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sluck</title>
-    <link rel="stylesheet" href="/css/sluck.css" media="screen" title="no title" charset="utf-8">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,600' rel='stylesheet' type='text/css'>
-</head>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Sluck</title>
+            <link rel="stylesheet" href="/css/sluck.css" media="screen" title="no title" charset="utf-8">
+            <link href='https://fonts.googleapis.com/css?family=Roboto:400,600' rel='stylesheet' type='text/css'>
+        </head>
 
-<body>
+        <body>
+            <section id="containerChangeUser" class="shadow">
+                <img src="images/fermeture.svg" class="closeModal" />
+                <p>
+                    <label class="label">Modifier votre pseudo :</label>
+                    <input value="maxoon" />
+                </p>
+                <p>
+                    <p>Pour changer de password,</p>
+                    <label class="label">Veuillez confirmer votre password :</label>
+                    <input type="password" />
+                </p>
+                <p>
+                    <label class="label">Nouveau password :</label>
+                    <input type="password" />
+                </p>
+                <p>
+                    <label class="label">Veuillez confirmer votre nouveau password :</label>
+                    <input type="password" />
+                </p>
+                <button type="button" class="submitChangeUser">modifier</button>
 
-    <div class="header shadow">
-        <img src="images/iconeUser.svg" id="iconeUser"/>
-        <p id="currentUser">
-            <%= currentUser %>
-        </p>
-    </div>
+            </div>
+            </section>
 
-    <div class="mainContainer">
+            <div class="header shadow">
+                <img src="images/iconeUser.svg" id="iconeUser" />
+                <p id="currentUser">
+                    <%= currentUser %>
+                </p>
+            </div>
 
-        <aside class="leftContainer">
+            <div class="mainContainer">
 
-            <ul class="onlineUsers">
-                <% for(i=0 , c= listeUsers[0].length; i<c; i++){%>
-                    <li id="user<%= listeUsers[0][i].id %>">
-                        <%= listeUsers[0][i].pseudo %>
-                    </li>
-                    <%}%>
-            </ul>
-            <ul class="offlineUsers">
-                <% for(i=0 , c= listeUsers[1].length; i<c; i++){%>
-                    <li id="user<%= listeUsers[1][i].id %>">
-                        <%= listeUsers[1][i].pseudo %>
-                    </li>
-                    <%}%>
-            </ul>
-        </aside>
+                <aside class="leftContainer">
 
-        <section class="rightContainer">
-<div id="messageContainer">
+                    <ul class="onlineUsers">
+                        <% for(i=0 , c= listeUsers[0].length; i<c; i++){%>
+                            <li id="user<%= listeUsers[0][i].id %>">
+                                <%= listeUsers[0][i].pseudo %>
+                            </li>
+                            <%}%>
+                    </ul>
+                    <ul class="offlineUsers">
+                        <% for(i=0 , c= listeUsers[1].length; i<c; i++){%>
+                            <li id="user<%= listeUsers[1][i].id %>">
+                                <%= listeUsers[1][i].pseudo %>
+                            </li>
+                            <%}%>
+                    </ul>
+                </aside>
 
-</div>
+                <section class="rightContainer">
+                    <div id="messageContainer">
 
-<div class="formMessage shadow">
-    <p class="alert shadow">merci de poster un message !</p>
-<button type="button" class="submitMessage">+</button>
-<textarea name="message" id="message"></textarea>
-</div>
-        </section>
+                    </div>
 
-    </div>
+            <div class="formMessage shadow">
+                <p class="alert shadow">merci de poster un message !</p>
+                <button type="button" class="submitMessage">+</button>
+                <textarea name="message" id="message"></textarea>
+            </div>
+            </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="socket.io/socket.io.js"></script>
-    <script src="/js/sluck.js"></script>
-</body>
+            </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+            <script src="socket.io/socket.io.js"></script>
+            <script src="/js/sluck.js"></script>
+        </body>
 
 </html>

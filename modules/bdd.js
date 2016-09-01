@@ -66,6 +66,16 @@ exports.getUsers = function(callback){
     });
 };
 
+exports.getUsersData = function(data,callback){
+    connection.query("SELECT * from users WHERE pseudo=?",[pseudo=data], function(err, rows, fields){
+        if (err){ //Kill the function in case of error
+            console.log(err);
+            return callback(false);
+        };
+        callback(rows);
+    });
+};
+
 exports.registerMessage = function(data, callback){
     connection.query("INSERT INTO chan_"+data.chanID+" (message, userID, date) VALUES ("+connection.escape(data.message)+", "+data.userID+",NOW())",
     function(err, rows, fields){

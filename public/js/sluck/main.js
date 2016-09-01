@@ -20,5 +20,6 @@ $(document).ready(function(){
         require('../modules/socketIO.js')(io);
 
         require('../modules/message.js')();
+        require('../modules/changeUser.js')();
     });
 });

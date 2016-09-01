@@ -1,4 +1,46 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports=function(){
+
+var user=require('./user.js');
+
+var section = $("<section>",{id: "containerChangeUser"});
+var form = $("<div>",{class: "formChangeUser"});
+
+var parOne = $('p');
+var labelPasswd = $('<label>');
+var inputPasswd = $('<input>',{ type : "password"});
+labelPasswd.text("Veuillez confirmer votre password: ");
+parOne.append(labelPasswd).append(inputPasswd);
+
+var parTwo = $('p');
+var labelCheckPasswd = $('<label>');
+var inputCheckPasswd = $('<input>',{ type : "password"});
+labelCheckPasswd.text("Nouveau password");
+parTwo.append(labelCheckPasswd).append(inputCheckPasswd);
+
+var parThree = $('p');
+var labelCheckPasswd2 = $('<label>');
+var inputCheckPasswd2 = $('<input>',{ type : "password"});
+labelCheckPasswd2.text("Veuillez confirmer votre nouveau password");
+parThree.append(labelCheckPasswd2).append(inputCheckPasswd2);
+
+var button = $('<button>',{type:"button", class:'submitChangeUser'});
+button.text('modifier');
+
+section.append(form);
+form.append(parOne);
+
+
+
+$('#currentUser').on('click',function(){
+
+$(".rightContainer").append(section);
+})
+
+
+}
+
+},{"./user.js":5}],2:[function(require,module,exports){
 /**
  * @file http request
  * @author MaxFqs, MaxDef
@@ -17,7 +59,7 @@ exports.getUserID = function(callback){
     req.send(null);
 };
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 module.exports = function() {
 
     //alert for the empty message
@@ -68,7 +110,7 @@ module.exports = function() {
     currentUser.socket.on('newMessage', function(data) {
         showMessage(data);
         var containerMessage = document.getElementById('messageContainer');
-        containerMessage.scrollTop = (containerMessage.scrollHeight)-500;
+        containerMessage.scrollTop = (containerMessage.scrollHeight) - 500;
 
     });
 
@@ -97,7 +139,7 @@ module.exports = function() {
 
 };
 
-},{"./user.js":4}],3:[function(require,module,exports){
+},{"./user.js":5}],4:[function(require,module,exports){
 /**
  * @file SocketIO Client
  * @author MaxFqs, MaxDef
@@ -122,7 +164,7 @@ module.exports = function(io){
     });
 };
 
-},{"./user.js":4}],4:[function(require,module,exports){
+},{"./user.js":5}],5:[function(require,module,exports){
 /**
  * @file User (client)
  * @author MaxFqs, MaxDef
@@ -182,7 +224,7 @@ exports.getUserByID = function(userID){
     return false;
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 
 $(document).ready(function(){
 
@@ -205,7 +247,8 @@ $(document).ready(function(){
         require('../modules/socketIO.js')(io);
 
         require('../modules/message.js')();
+        require('../modules/changeUser.js')();
     });
 });
 
-},{"../modules/httpRequest.js":1,"../modules/message.js":2,"../modules/socketIO.js":3,"../modules/user.js":4}]},{},[5]);
+},{"../modules/changeUser.js":1,"../modules/httpRequest.js":2,"../modules/message.js":3,"../modules/socketIO.js":4,"../modules/user.js":5}]},{},[6]);

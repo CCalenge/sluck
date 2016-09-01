@@ -20,10 +20,12 @@ $hearderHeight: 50px;
     @include display(flex);
     @include align-items(center);
     color: white;
-    #iconeUser{
+
+    #iconeUser {
         width: 25px;
         margin-left: 20px;
     }
+
     #currentUser {
         margin-left: 10px;
     }
@@ -41,7 +43,8 @@ $hearderHeight: 50px;
     color: white;
     padding-left: 20px;
     border-right: 1px solid grey;
-padding-top: 20px;
+    padding-top: 20px;
+
     #currentUser {
         color: black;
     }
@@ -145,4 +148,10 @@ padding-top: 20px;
         max-width: 100%;
         word-wrap: break-word;
     }
+}
+#containerChangeUser{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    position: fixed;
 }

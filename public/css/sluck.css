@@ -214,4 +214,10 @@ html {
     max-width: 100%;
     word-wrap: break-word; }
 
+#containerChangeUser {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  position: fixed; }
+
 /*# sourceMappingURL=sluck.css.map */

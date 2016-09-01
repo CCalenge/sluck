@@ -1,40 +1,45 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports=function(){
 
-var user=require('./user.js');
+var User=require('./user.js').getUser();
+
+$('#currentUser').on('click',function(){
 
 var section = $("<section>",{id: "containerChangeUser"});
 var form = $("<div>",{class: "formChangeUser"});
 
-var parOne = $('p');
-var labelPasswd = $('<label>');
+var pseudo= $('<p>');
+var labelPseudo = $('<label>',{class : "label" });
+var inputPseudo = $('<input>');
+labelPseudo.text("Modifier votre pseudo : ");
+pseudo.append(labelPseudo).append(inputPseudo);
+
+var passwd = $('<p>');
+var labelPasswd = $('<label>',{class : "label" });
 var inputPasswd = $('<input>',{ type : "password"});
-labelPasswd.text("Veuillez confirmer votre password: ");
-parOne.append(labelPasswd).append(inputPasswd);
+labelPasswd.text("Veuillez confirmer votre password : ");
+passwd.append(labelPasswd).append(inputPasswd);
 
-var parTwo = $('p');
-var labelCheckPasswd = $('<label>');
+var checkPasswd = $('<p>');
+var labelCheckPasswd = $('<label>',{class : "label" });
 var inputCheckPasswd = $('<input>',{ type : "password"});
-labelCheckPasswd.text("Nouveau password");
-parTwo.append(labelCheckPasswd).append(inputCheckPasswd);
+labelCheckPasswd.text("Nouveau password : ");
+checkPasswd.append(labelCheckPasswd).append(inputCheckPasswd);
 
-var parThree = $('p');
-var labelCheckPasswd2 = $('<label>');
+var checkPasswd2 = $('<p>');
+var labelCheckPasswd2 = $('<label>',{class : "label" });
 var inputCheckPasswd2 = $('<input>',{ type : "password"});
-labelCheckPasswd2.text("Veuillez confirmer votre nouveau password");
-parThree.append(labelCheckPasswd2).append(inputCheckPasswd2);
+labelCheckPasswd2.text("Veuillez confirmer votre nouveau password : ");
+checkPasswd2.append(labelCheckPasswd2).append(inputCheckPasswd2);
 
 var button = $('<button>',{type:"button", class:'submitChangeUser'});
 button.text('modifier');
 
+form.append(pseudo).append(passwd).append(checkPasswd).append(checkPasswd2).append(button);
+
 section.append(form);
-form.append(parOne);
-
-
-
-$('#currentUser').on('click',function(){
-
 $(".rightContainer").append(section);
+
 })
 
 

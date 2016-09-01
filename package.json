@@ -17,7 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "git": "git pull",
-    "buildSluckJS": "uglifyjs public/js/sluck/main.js > public/js/sluck.js",
+    "buildSluckJS": "browserify public/js/sluck/main.js | uglifyjs > public/js/sluck.js",
     "buildCSS": "sass sass/sluck.scss:css/sluck.css",
     "watchJS": "watchify public/js/sluck/main.js -o public/js/sluck.js",
     "watchLoginSass": "sass --watch sass/login.scss:public/css/login.css --style compressed",

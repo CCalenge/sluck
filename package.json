@@ -16,7 +16,13 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon app.js"
+    "git": "git pull",
+    "buildJS": "browserify public/js/sluck/main.js > public/js/sluck.js",
+    "buildCSS": "sass sass/sluck.scss:css/sluck.css",
+    "watchJS": "watchify public/js/sluck/main.js -o public/js/sluck.js",
+    "watchSASS": "sass --watch sass/sluck.scss:css/sluck.css",
+    "dev":"npm run watchJS & npm run watchSASS & nodemon --config nodemon.json app.js",
+    "server": "npm run git && npm run buildJS && npm run buildCSS && node app.js"
   },
   "repository": {
     "type": "git",

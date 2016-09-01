@@ -48,7 +48,7 @@ module.exports = function() {
     currentUser.socket.on('newMessage', function(data) {
         showMessage(data);
         var containerMessage = document.getElementById('messageContainer');
-        containerMessage.scrollTop = (containerMessage.scrollHeight) - 500;
+        containerMessage.scrollTop = containerMessage.scrollHeight;
 
     });
 

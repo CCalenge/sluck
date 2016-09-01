@@ -5,6 +5,7 @@ sass/.sass-cache/*
 public/css/*.map
 .DS_Store
 
+public/js/modules/host.js
 public/js/sluck.js
 
 docs

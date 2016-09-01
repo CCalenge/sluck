@@ -17,12 +17,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "git": "git pull",
-    "buildJS": "browserify public/js/sluck/main.js > public/js/sluck.js",
+    "buildSluckJS": "browserify public/js/sluck/main.js | uglifyjs > public/js/sluck.js",
     "buildCSS": "sass sass/sluck.scss:css/sluck.css",
     "watchJS": "watchify public/js/sluck/main.js -o public/js/sluck.js",
-    "watchSASS": "sass --watch sass/sluck.scss:css/sluck.css",
-    "dev":"npm run watchJS & npm run watchSASS & nodemon --config nodemon.json app.js",
-    "server": "npm run git && node app.js"
+    "watchLoginSass": "sass --watch sass/login.scss:public/css/login.css --style compressed",
+    "watchSluckSass": "sass --watch sass/sluck.scss:public/css/sluck.css --style compressed",
+    "watchSASS": "npm run watchLoginSass & npm run watchSluckSass",
+    "buildJS": "npm run buildSluckJS",
+    "dev": "npm run watchJS & npm run watchSASS & nodemon --config nodemon.json app.js",
+    "server": "npm run git && npm run buildJS && node app.js"
   },
   "repository": {
     "type": "git",

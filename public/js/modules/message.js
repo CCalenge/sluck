@@ -11,10 +11,10 @@ module.exports = function() {
 
     //on press enter= post the message
     $(document).keypress(function(e) {
-        if (e.which == 13) {
+        if (e.which == 13 && !e.shiftKey) {
             var message = $('#message').val();
             checkMessage(message);
-        }
+        };
     });
 
     // on form submit , send event with message

@@ -13,36 +13,6 @@
         </head>
 
         <body>
-            <div id="model" class="hide">
-                <%- include('message'); %>
-            </div>
-
-
-            <section id="containerChangeUser" class="shadow">
-                <img src="images/fermeture.svg" class="closeModal" />
-                <p>
-                    <label class="label">Modifier votre pseudo :</label>
-                    <input class="pseudoInput" />
-                </p>
-
-                <p>
-                    <p>Pour changer de password,</p>
-                    <label class="label">Veuillez confirmer votre mot de passe:</label>
-                    <input type="password" class="passwd"/><span class="error">erreur de saisie</span>
-                </p>
-                <p>
-                    <label class="label">Nouveau mot de passe :</label>
-                    <input type="password" class="newPasswd" placeholder="min 6 caractères"/><span class="error">6 caractères min</span>
-                </p>
-                <p>
-                    <label class="label">Veuillez confirmer votre nouveau mot de passe :</label>
-                    <input type="password"class="checkNewPasswd" placeholder="min 6 caractères"/><span class="error">erreur de saisie</span>
-                </p>
-                <button type="button" class="submitChangeUser">modifier</button>
-
-            </div>
-            </section>
-
             <div class="header shadow">
                 <img src="images/avatar.png" id="iconeUser" />
                 <p id="currentUser">
@@ -82,6 +52,13 @@
             </div>
             </section>
 
+            </div>
+
+
+            <%- include('changeUser'); %>
+
+            <div id="model" class="hide">
+                <%- include('message'); %>
             </div>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

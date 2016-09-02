@@ -20,4 +20,7 @@ module.exports = function(io){
     socket.on('setOffline', function(userID){
         $('.offlineUsers').append($('#user'+userID));
     });
+    socket.on('updateUserPseudo',function(result){
+        $('#user'+result.id).text(result.pseudo);
+    })
 };

@@ -6,9 +6,11 @@ module.exports = function() {
     $('.closeModal').on('click', function() {
 
         $('#containerChangeUser').toggleClass('show');
+
     })
 
     $('#currentUser').on('click', function() {
+
 
         // on click , show the div containerChangeUser
 
@@ -55,7 +57,7 @@ module.exports = function() {
 
             $('.checkNewPasswd').on('blur', function() {
 
-                if ($(this).val().trim().length == 0 || $(this).val() !== $('.newPasswd').val() || $(this).val().length < 6) {
+                if ($(this).val().trim().length == 0 && $(this).val() !== $('.newPasswd').val()) {
 
                     $(this).next().addClass('show');
                     checkForm += true;
@@ -92,8 +94,10 @@ module.exports = function() {
                         userData.password = bddResult.password;
 
                     }
-
-                    console.log(userData);
+                    // emit the update user data
+                    currentUser.socket.emit('updateUser', userData);
+                    //change the currentuserName on the user client side
+                    $('#currentUser').text(userData.pseudo);
                     $(this).css('fontSize', 10).text('modifier');
 
                 }

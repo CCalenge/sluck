@@ -87,17 +87,18 @@ exports.registerMessage = function(data, callback){
     });
 };
 
-// exports.updateUserData = function(data ,callback){
-//     connection.query("UPDATE users SET pseudo =?,password=? WHERE pseudo =? ",[pseudo:data.pseudo, password:data.password ,pseudo: data.lastPseudo],
-//     function(err, rows, fields){
-//         if (err){ //Kill the function in case of error
-//             console.log(err);
-//             return callback(false);
-//         };
-//         callback(true);
-//     });
-//
-// }
+exports.updateUserData = function(data ,callback){
+    connection.query("UPDATE users SET pseudo =?,password=? WHERE pseudo =? ",[pseudo= data.pseudo, password= data.password, pseudo= data.lastPseudo],
+    function(err, rows, fields){
+        if (err){ //Kill the function in case of error
+            console.log(err);
+            return callback(false);
+        };
+        console.log(rows);
+        callback(rows);
+    });
+
+}
 
 exports.getMessageByID = function(data, callback){
     connection.query("SELECT message,id,userID,DATE_FORMAT(date,'%d/%c/%Y à %Hh%i') AS date from chan_"+data.chanID+" WHERE id = "+data.id, function(err, rows, fields){
@@ -108,10 +109,6 @@ exports.getMessageByID = function(data, callback){
         callback(rows);
     });
 }
-
-
-
-
 
 
 /**
@@ -125,6 +122,7 @@ exports.getMessageByID = function(data, callback){
  * });
  * console => [ RowDataPacket { id, date, message, userID } ]
  */
+
 exports.getMessages = function(chanID, callback){
     connection.query("SELECT * FROM chan_"+chanID+" ORDER BY id ASC LIMIT 30", function(err, rows, fields){
         if (err){ //Kill the function in case of error

@@ -37,8 +37,20 @@ module.exports = function(server) {
             });
         });
         socket.on('registerMessage', function(data) {
-            User.registerMessage(data);
+                User.registerMessage(data);
         });
+
+        socket.on('updateUser', function (data){
+
+                bdd.updateUserData(data,function(result){
+                    if(result){
+                        //emit the user id and pseudo
+                        User.pseudo = data.pseudo;
+                        socket.broadcast.emit('updateUserPseudo',{pseudo:data.pseudo, id:User.id});
+
+                    }
+                });
+        })
 
     });
 

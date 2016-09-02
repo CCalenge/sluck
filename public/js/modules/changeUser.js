@@ -17,16 +17,17 @@ module.exports = function() {
         // with the response, we can set some value for the input
         currentUser.socket.on('returnUserData', function(result) {
             bddResult = result[0];
-            checkForm = false;
-
+            check=true;
             // put the default value for the pseudo
             $('.pseudoInput').val(bddResult.pseudo);
             // check the password to define a new one
             $('.passwd').on('blur', function() {
                 if ($(this).val() !== bddResult.password) {
+                    check=false;
                     $(this).next().addClass('show');
-                    checkForm += true;
+
                 } else {
+                    check=true;
                     $(this).next().removeClass('show');
                 };
             });
@@ -34,17 +35,21 @@ module.exports = function() {
             $('.newPasswd').on('blur', function() {
                 if ($(this).val().length < 6) {
                     $(this).next().addClass('show');
-                    checkForm += true;
+                    check=false;
                 } else {
+                    check=true;
                     $(this).next().removeClass('show');
                 };
             });
 
             $('.checkNewPasswd').on('blur', function() {
-                if ($(this).val().trim().length == 0 && $(this).val() !== $('.newPasswd').val()) {
+
+                if ( $(this).val() !== $('.newPasswd').val()) {
+                    check=false;
                     $(this).next().addClass('show');
-                    checkForm += true;
+
                 } else {
+                    check=true;
                     $(this).next().removeClass('show');
                 };
             });
@@ -52,10 +57,10 @@ module.exports = function() {
             $('.submitChangeUser').on('click', function() {
                 //data to send to bdd
                 var userData = {};
+                console.log(check);
                 //check on submit if we have a new password define without confirmation password
-                if (checkForm > 0 || $('.newPasswd').val() != $('.checkNewPasswd').val()) {
-                    $('.newPasswd').next().addClass('show');
-                    checkForm = 0;
+                if ( check==false || $('.passwd').val() !== bddResult.password) {
+
                     $(this).text('!').css('fontSize', 40);
                 } else {
                     userData.lastPseudo = bddResult.pseudo;

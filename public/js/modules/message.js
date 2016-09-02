@@ -3,7 +3,6 @@ module.exports = function() {
     //alert for the empty message
     $('.alert').hide();
 
-
     var user = require('./user.js');
 
     // get the current user
@@ -53,25 +52,39 @@ module.exports = function() {
     });
 
     function showMessage(dataArray) {
+        var $clone = $('#containerMessage').clone();
 
         var data = dataArray[0];
-        var containerMessage = document.getElementById('messageContainer');
-        var article = document.createElement('article');
-        var pseudo = document.createElement('p');
-        var date = document.createElement('span');
-        var message = document.createElement('p');
         var User = user.getUserByID(data.userID);
-        pseudo.innerHTML = User.pseudo;
-        message.innerHTML = data.message;
-        date.innerHTML = data.date;
-        article.classList.add("containerMessage");
-        pseudo.classList.add("messageAuthor");
-        date.classList.add("dateMessage");
-        message.classList.add("message");
-        pseudo.appendChild(date);
-        article.appendChild(pseudo);
-        article.appendChild(message);
-        containerMessage.appendChild(article);
+
+        $clone.find('.messageAuthor').html(User.pseudo);
+        $clone.find('.dateMessage').html(data.date);
+        $clone.find('.message').html(data.message);
+
+        $clone.appendTo('#messageContainer');
+
+        //
+        // var $container = $('#messageContainer');
+        // $("#containerMessage").clone().appendTo( "#messageContainer" );
+        // $container.append(ejs.renderFile("../views/test/test"));
+        // var data = dataArray[0];
+        // var containerMessage = document.getElementById('messageContainer');
+        // var article = document.createElement('article');
+        // var pseudo = document.createElement('p');
+        // var date = document.createElement('span');
+        // var message = document.createElement('p');
+        // var User = user.getUserByID(data.userID);
+        // pseudo.innerHTML = User.pseudo;
+        // message.innerHTML = data.message;
+        // date.innerHTML = data.date;
+        // article.classList.add("containerMessage");
+        // pseudo.classList.add("messageAuthor");
+        // date.classList.add("dateMessage");
+        // message.classList.add("message");
+        // pseudo.appendChild(date);
+        // article.appendChild(pseudo);
+        // article.appendChild(message);
+        // containerMessage.appendChild(article);
     }
 
 

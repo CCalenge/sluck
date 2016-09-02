@@ -130,11 +130,29 @@ $hearderHeight: 50px;
 .containerMessage {
     margin-bottom: 15px;
     width: 90%;
+    @include display(flex);
+    // @include justify-content(center);
 
-    .messageAuthor {
-        font-weight: bold;
-        font-size: 1.1em;
+    .avatar {
+        @include display(flex);
+        // @include justify-content(center);
+        @include align-items(center);
+    }
 
+    .messageContent {
+        margin-left: 5px;
+    }
+
+    .messageHeader {
+        @include display(flex);
+        @include justify-content(center);
+        @include align-items(center);
+
+
+        .messageAuthor {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
         .dateMessage {
             margin-left: 15px;
             color: rgb(149, 149, 149);
@@ -142,6 +160,8 @@ $hearderHeight: 50px;
             font-style: italic;
         }
     }
+
+
 
     .message {
         max-width: 100%;

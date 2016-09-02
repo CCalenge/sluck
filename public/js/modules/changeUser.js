@@ -16,61 +16,73 @@ module.exports = function() {
 
         // with the response, we can set some value for the input
         currentUser.socket.on('returnUserData', function(result) {
+
             bddResult = result[0];
-            check=true;
+            check = true;
             // put the default value for the pseudo
             $('.pseudoInput').val(bddResult.pseudo);
             // check the password to define a new one
             $('.passwd').on('blur', function() {
-                if ($(this).val() !== bddResult.password) {
-                    check=false;
+
+                if ($(this).val() !== bddResult.password && $(this).val().length != 0) {
+                    check = false;
                     $(this).next().addClass('show');
 
                 } else {
-                    check=true;
+                    check = true;
                     $(this).next().removeClass('show');
                 };
             });
 
             $('.newPasswd').on('blur', function() {
+
                 if ($(this).val().length < 6) {
                     $(this).next().addClass('show');
-                    check=false;
+                    check = false;
                 } else {
-                    check=true;
+                    check = true;
                     $(this).next().removeClass('show');
                 };
             });
 
             $('.checkNewPasswd').on('blur', function() {
 
-                if ( $(this).val() !== $('.newPasswd').val()) {
-                    check=false;
+                if ($(this).val() !== $('.newPasswd').val()) {
+                    check = false;
                     $(this).next().addClass('show');
 
                 } else {
-                    check=true;
+                    check = true;
                     $(this).next().removeClass('show');
                 };
             });
 
             $('.submitChangeUser').on('click', function() {
+
                 //data to send to bdd
                 var userData = {};
-                console.log(check);
-                //check on submit if we have a new password define without confirmation password
-                if ( check==false || $('.passwd').val() !== bddResult.password) {
 
+                //check on submit
+                if (!check) {
+                    //error message
                     $(this).text('!').css('fontSize', 40);
+
                 } else {
+                    // refresh input
+                    $('#containerChangeUser').find('input[type=password]').val("");
+
+                    $('#containerChangeUser').addClass("hide");
+                    check = true;
                     userData.lastPseudo = bddResult.pseudo;
                     userData.pseudo = $('.pseudoInput').val();
 
+                    // if there is a new password userdata password is input val, otherwise we take the bdd.result
                     if ($('.checkNewPasswd').val().length > 0) {
                         userData.password = $('.checkNewPasswd').val();
                     } else {
                         userData.password = bddResult.password;
                     };
+
                     // emit the update user data
                     currentUser.socket.emit('updateUser', userData);
                     //change the currentuserName on the user client side

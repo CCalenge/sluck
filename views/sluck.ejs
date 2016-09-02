@@ -1,69 +1,62 @@
 <!DOCTYPE html>
 <html>
 <!-- recover current user -->
-<% currentUser=locals.currentUser.pseudo %>
-    <% listeUsers=locals.usersSorted %>
+<% currentUser = locals.currentUser.pseudo %>
+<% listeUsers = locals.usersSorted %>
 
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Sluck</title>
-            <link rel="stylesheet" href="/css/sluck.css" media="screen" title="no title" charset="utf-8">
-            <link href='https://fonts.googleapis.com/css?family=Roboto:400,600' rel='stylesheet' type='text/css'>
-        </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sluck</title>
+    <link rel="stylesheet" href="/css/sluck.css" media="screen" title="no title" charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,600' rel='stylesheet' type='text/css'>
+</head>
 
-        <body>
-            <div class="header shadow">
-                <img src="images/avatar.png" id="iconeUser" />
-                <p id="currentUser">
-                    <%= currentUser %>
-                </p>
-            </div>
+<body>
+    <div class="header shadow">
+        <img src="images/avatar.png" id="iconeUser" />
+        <p id="currentUser"><%= currentUser %></p>
+    </div>
 
-            <div class="mainContainer">
+    <div class="mainContainer">
+        <aside class="leftContainer">
+            <ul class="onlineUsers">
+                <% for(i=0 , c= listeUsers[0].length; i<c; i++){%>
+                    <li id="user<%= listeUsers[0][i].id %>">
+                        <%= listeUsers[0][i].pseudo %>
+                    </li>
+                    <%}%>
+            </ul>
+            <ul class="offlineUsers">
+                <% for(i=0 , c= listeUsers[1].length; i<c; i++){%>
+                    <li id="user<%= listeUsers[1][i].id %>">
+                        <%= listeUsers[1][i].pseudo %>
+                    </li>
+                    <%}%>
+            </ul>
+        </aside>
 
-                <aside class="leftContainer">
-
-                    <ul class="onlineUsers">
-                        <% for(i=0 , c= listeUsers[0].length; i<c; i++){%>
-                            <li id="user<%= listeUsers[0][i].id %>">
-                                <%= listeUsers[0][i].pseudo %>
-                            </li>
-                            <%}%>
-                    </ul>
-                    <ul class="offlineUsers">
-                        <% for(i=0 , c= listeUsers[1].length; i<c; i++){%>
-                            <li id="user<%= listeUsers[1][i].id %>">
-                                <%= listeUsers[1][i].pseudo %>
-                            </li>
-                            <%}%>
-                    </ul>
-                </aside>
-
-                <section class="rightContainer">
-                    <div id="messageContainer">
-
-                    </div>
+        <section class="rightContainer">
+            <div id="messageContainer"></div>
 
             <div class="formMessage shadow">
                 <p class="alert shadow">merci de poster un message !</p>
                 <button type="button" class="submitMessage">+</button>
                 <textarea name="message" id="message"></textarea>
             </div>
-            </section>
+        </section>
+    </div> <!-- mainContainer -->
 
-            </div>
+    <!-- include -->
+    <%- include('changeUser'); %>
 
+    <div id="model" class="hide">
+        <%- include('message'); %>
+    </div>
 
-            <%- include('changeUser'); %>
-
-            <div id="model" class="hide">
-                <%- include('message'); %>
-            </div>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-            <script src="socket.io/socket.io.js"></script>
-            <script src="/js/sluck.js"></script>
-        </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="/js/sluck.js"></script>
+</body>
 
 </html>

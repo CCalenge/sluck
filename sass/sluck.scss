@@ -26,6 +26,7 @@ $hearderHeight: 50px;
 
     #currentUser {
         margin-left: 10px;
+        cursor: pointer;
     }
 }
 
@@ -156,7 +157,7 @@ $hearderHeight: 50px;
     color: white;
     position: fixed;
     opacity: 0;
-    right: 50px;
+    left: 50px;
     z-index: 120;
     margin: 20px;
     top: 50px;
@@ -166,6 +167,10 @@ $hearderHeight: 50px;
         position: absolute;
         right: 30px;
         cursor: pointer;
+        transition: all 0.3s;
+    }
+    .closeModal:hover{
+        transform: scale(1.1,1.1);
     }
     .label {
         display: inline-block;
@@ -191,7 +196,11 @@ $hearderHeight: 50px;
         color: $primary_color;
     }
 }
-
+.error{
+    opacity: 0;
+    color:rgb(255, 0, 0);
+    margin-left: 5px;
+}
 .show {
     opacity: 1!important;
 }

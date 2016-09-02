@@ -37,7 +37,7 @@ module.exports = function(server) {
             });
         });
         socket.on('registerMessage', function(data) {
-            User.registerMessage(data)
+            User.registerMessage(data);
         });
 
     });

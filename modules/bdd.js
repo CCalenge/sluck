@@ -87,6 +87,18 @@ exports.registerMessage = function(data, callback){
     });
 };
 
+// exports.updateUserData = function(data ,callback){
+//     connection.query("UPDATE users SET pseudo =?,password=? WHERE pseudo =? ",[pseudo:data.pseudo, password:data.password ,pseudo: data.lastPseudo],
+//     function(err, rows, fields){
+//         if (err){ //Kill the function in case of error
+//             console.log(err);
+//             return callback(false);
+//         };
+//         callback(true);
+//     });
+//
+// }
+
 exports.getMessageByID = function(data, callback){
     connection.query("SELECT message,id,userID,DATE_FORMAT(date,'%d/%c/%Y à %Hh%i') AS date from chan_"+data.chanID+" WHERE id = "+data.id, function(err, rows, fields){
         if (err){ //Kill the function in case of error

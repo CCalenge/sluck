@@ -17,20 +17,21 @@
                 <img src="images/fermeture.svg" class="closeModal" />
                 <p>
                     <label class="label">Modifier votre pseudo :</label>
-                    <input value="maxoon" />
+                    <input class="pseudoInput" />
                 </p>
+
                 <p>
                     <p>Pour changer de password,</p>
-                    <label class="label">Veuillez confirmer votre password :</label>
-                    <input type="password" />
+                    <label class="label">Veuillez confirmer votre mot de passe:</label>
+                    <input type="password" class="passwd"/><span class="error">erreur de saisie</span>
                 </p>
                 <p>
-                    <label class="label">Nouveau password :</label>
-                    <input type="password" />
+                    <label class="label">Nouveau mot de passe :</label>
+                    <input type="password" class="newPasswd" placeholder="min 6 caractères"/><span class="error">6 caractères min</span>
                 </p>
                 <p>
-                    <label class="label">Veuillez confirmer votre nouveau password :</label>
-                    <input type="password" />
+                    <label class="label">Veuillez confirmer votre nouveau mot de passe :</label>
+                    <input type="password"class="checkNewPasswd" placeholder="min 6 caractères"/><span class="error">erreur de saisie</span>
                 </p>
                 <button type="button" class="submitChangeUser">modifier</button>
 

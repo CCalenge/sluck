@@ -1,84 +1,107 @@
 module.exports = function() {
 
-    // var User = require('./user');
-// $('#containerChangeUser').hide();
-$('.closeModal').on('click',function(){
-    $('#containerChangeUser').toggleClass('show');
-})
+    var User = require('./user');
+
+    // click event on close window and currentUserName (top left page)
+    $('.closeModal').on('click', function() {
+
+        $('#containerChangeUser').toggleClass('show');
+    })
+
     $('#currentUser').on('click', function() {
 
-//         var currentUser = User.getUser();
-//
-//         currentUser.socket.emit('askUserInfo',currentUser.pseudo);
-//         currentUser.socket.on('returnUserData',function(result){
-//
-// createPage(result);
-//
-//         });
-//
-$('#containerChangeUser').toggleClass('show');
+        // on click , show the div containerChangeUser
+
+        $('#containerChangeUser').toggleClass('show');
+
+        //get the user, then emit the request to have the bdd data
+        var currentUser = User.getUser();
+
+        currentUser.socket.emit('askUserInfo', currentUser.pseudo);
+
+        // with the response, we can set some value for the input
+        currentUser.socket.on('returnUserData', function(result) {
+
+            bddResult = result[0];
+
+            checkForm = false;
+            // put the default value for the pseudo
+            $('.pseudoInput').val(bddResult.pseudo);
+
+
+            // check the password to define a new one
+            $('.passwd').on('blur', function() {
+
+                if ($(this).val() !== bddResult.password) {
+
+                    $(this).next().addClass('show');
+                    checkForm += true;
+
+                } else {
+
+                    $(this).next().removeClass('show');
+                }
+            })
+
+            $('.newPasswd').on('blur', function() {
+
+                if ($(this).val().length < 6) {
+                    $(this).next().addClass('show');
+                    checkForm += true;
+                } else {
+                    $(this).next().removeClass('show');
+                }
+            })
+
+            $('.checkNewPasswd').on('blur', function() {
+
+                if ($(this).val().trim().length == 0 || $(this).val() !== $('.newPasswd').val() || $(this).val().length < 6) {
+
+                    $(this).next().addClass('show');
+                    checkForm += true;
+                } else {
+                    $(this).next().removeClass('show');
+                }
+            })
+
+            $('.submitChangeUser').on('click', function() {
+                //data to send to bdd
+                var userData = {};
+
+                //check on submit if we have a new password define without confirmation password
+                if (checkForm > 0 || $('.newPasswd').val() != $('.checkNewPasswd').val()) {
+
+                    $('.newPasswd').next().addClass('show');
+
+                    checkForm = 0;
+
+                    $(this).text('!').css('fontSize', 40);
+
+                } else {
+
+                    userData.lastPseudo = bddResult.pseudo;
+
+                    userData.pseudo = $('.pseudoInput').val();
+
+                    if ($('.checkNewPasswd').val().length > 0) {
+
+                        userData.password = $('.checkNewPasswd').val();
+
+                    } else {
+
+                        userData.password = bddResult.password;
+
+                    }
+
+                    console.log(userData);
+                    $(this).css('fontSize', 10).text('modifier');
+
+                }
+            })
+        });
 
     });
 
-// function createPage(data){
-//
-//                 var result=data[0];
-//
-//                 var section = $("<section>", {
-//                     id: "containerChangeUser"
-//                 });
-//                 var form = $("<div>", {
-//                     class: "formChangeUser"
-//                 });
-//
-//                 var pseudo = $('<p>');
-//                 var labelPseudo = $('<label>', {
-//                     class: "label"
-//                 });
-//                 var inputPseudo = $('<input>',{value:result.pseudo});
-//                 labelPseudo.text("Modifier votre pseudo : ");
-//                 pseudo.append(labelPseudo).append(inputPseudo);
-//
-//                 var passwd = $('<p>');
-//                 var labelPasswd = $('<label>', {
-//                     class: "label"
-//                 });
-//                 var inputPasswd = $('<input>', {
-//                     type: "password"
-//                 });
-//                 labelPasswd.text("Veuillez confirmer votre password : ");
-//                 passwd.append(labelPasswd).append(inputPasswd);
-//
-//                 var checkPasswd = $('<p>');
-//                 var labelCheckPasswd = $('<label>', {
-//                     class: "label"
-//                 });
-//                 var inputCheckPasswd = $('<input>', {
-//                     type: "password"
-//                 });
-//                 labelCheckPasswd.text("Nouveau password : ");
-//                 checkPasswd.append(labelCheckPasswd).append(inputCheckPasswd);
-//
-//                 var checkPasswd2 = $('<p>');
-//                 var labelCheckPasswd2 = $('<label>', {
-//                     class: "label"
-//                 });
-//                 var inputCheckPasswd2 = $('<input>', {
-//                     type: "password"
-//                 });
-//                 labelCheckPasswd2.text("Veuillez confirmer votre nouveau password : ");
-//                 checkPasswd2.append(labelCheckPasswd2).append(inputCheckPasswd2);
-//
-//                 var button = $('<button>', {
-//                     type: "button",
-//                     class: 'submitChangeUser'
-//                 });
-//                 button.text('modifier');
-//
-//                 form.append(pseudo).append(passwd).append(checkPasswd).append(checkPasswd2).append(button);
-//
-//                 section.append(form);
-//                 $(".rightContainer").append(section);
-// }
+
 
 }

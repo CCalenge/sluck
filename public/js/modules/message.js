@@ -18,14 +18,11 @@ module.exports = function() {
 
     // on form submit , send event with message
     $('.submitMessage').on('click', function() {
-
         var message = $('#message').val();
         checkMessage(message);
-
     });
 
     function checkMessage(message) {
-
         if (message.trim() != '') {
             $('.submitMessage').text('+');
             currentUser.socket.emit('registerMessage', {
@@ -33,28 +30,17 @@ module.exports = function() {
                 message: message
             });
             $('#message').val('');
-
         } else {
             $('.submitMessage').text('!');
             $('.alert').show();
             setTimeout(function() {
                 $(".alert").fadeOut();
             }, 2000);
-        }
+        };
+    };
 
-    }
-
-    currentUser.socket.on('newMessage', function(data) {
-        showMessage(data);
-        var containerMessage = document.getElementById('messageContainer');
-        containerMessage.scrollTop = containerMessage.scrollHeight;
-
-    });
-
-    function showMessage(dataArray) {
+    function addMessage(data) {
         var $clone = $('#containerMessage').clone();
-
-        var data = dataArray[0];
         var User = user.getUserByID(data.userID);
 
         $clone.find('.messageAuthor').html(User.pseudo);
@@ -62,30 +48,21 @@ module.exports = function() {
         $clone.find('.message').html(data.message);
 
         $clone.appendTo('#messageContainer');
+    };
 
-        //
-        // var $container = $('#messageContainer');
-        // $("#containerMessage").clone().appendTo( "#messageContainer" );
-        // $container.append(ejs.renderFile("../views/test/test"));
-        // var data = dataArray[0];
-        // var containerMessage = document.getElementById('messageContainer');
-        // var article = document.createElement('article');
-        // var pseudo = document.createElement('p');
-        // var date = document.createElement('span');
-        // var message = document.createElement('p');
-        // var User = user.getUserByID(data.userID);
-        // pseudo.innerHTML = User.pseudo;
-        // message.innerHTML = data.message;
-        // date.innerHTML = data.date;
-        // article.classList.add("containerMessage");
-        // pseudo.classList.add("messageAuthor");
-        // date.classList.add("dateMessage");
-        // message.classList.add("message");
-        // pseudo.appendChild(date);
-        // article.appendChild(pseudo);
-        // article.appendChild(message);
-        // containerMessage.appendChild(article);
-    }
+    currentUser.socket.on('newMessage', function(dataArray){
+        addMessage(dataArray[0]);
+        var containerMessage = document.getElementById('messageContainer');
+        containerMessage.scrollTop = containerMessage.scrollHeight;
+    });
+
+    currentUser.socket.on("messageHistory", function(dataArray){
+        for(i = 0; i < dataArray.length; i++)
+            addMessage(dataArray[i]);
+        var containerMessage = document.getElementById('messageContainer');
+        containerMessage.scrollTop = containerMessage.scrollHeight;
+    });
+
 
 
 };

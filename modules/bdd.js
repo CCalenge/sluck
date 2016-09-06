@@ -13,10 +13,10 @@ var connection = mysql.createConnection({
     database: 'sluck'
 });
 
-var errorLog = function(err, rows, fields){
-    if (err) console.log(err);
+function error(err, callback){
+    console.log(error);
+    callback(false);
 };
-
 
 /**
  * Return user ID if login successful or false
@@ -33,11 +33,7 @@ exports.checkLogin = function(login, callback){
     if (login.pseudo == "" || login.password == "") return callback(false);
 
     connection.query("SELECT * from users WHERE pseudo = ?",[login.pseudo], function(err, rows, fields){
-        if (err){ //Kill the function in case of error
-            console.log(err);
-            return callback(false);
-        };
-
+        if (err) return error(err, callback);
         if (rows.length > 0 && login.password === rows[0].password) return callback(rows[0].id);
         callback(false);
     });
@@ -58,10 +54,25 @@ exports.checkLogin = function(login, callback){
  */
 exports.getUsers = function(callback){
     connection.query("SELECT * from users", function(err, rows, fields){
-        if (err){ //Kill the function in case of error
-            console.log(err);
-            return callback(false);
-        };
+        if (err) return error(err, callback);
+        callback(rows);
+    });
+};
+
+/**
+ * Return last 30 messages of the channel
+ * @function
+ * @param {int} chanID          - channel ID
+ * @param {function} callback   - callback(dataArray)
+ * @example
+ * bdd.getMessages(1, function(dataArray){
+ *     socket.emit("messageHistory", dataArray);
+ * });
+ */
+exports.getMessages = function(chanID, callback){
+    connection.query("(SELECT * FROM chan_"+chanID+" ORDER BY id DESC LIMIT 30) ORDER BY id ASC",
+    function(err, rows, fields){
+        if (err) return error(err, callback);
         callback(rows);
     });
 };
@@ -109,26 +120,3 @@ exports.getMessageByID = function(data, callback){
         callback(rows);
     });
 }
-
-
-/**
- * Return the most recent messages
- * @function
- * @param {int} chanID
- * @param {function} callback
- * @example
- * bdd.getUsers(function(users) {
- *     console.log(users);
- * });
- * console => [ RowDataPacket { id, date, message, userID } ]
- */
-exports.getMessages = function(chanID, callback){
-    connection.query("(SELECT * FROM chan_"+chanID+" ORDER BY id DESC LIMIT 30) ORDER BY id ASC",
-    function(err, rows, fields){
-        if (err){ //Kill the function in case of error
-            console.log(err);
-            return callback(false);
-        };
-        callback(rows);
-    });
-};

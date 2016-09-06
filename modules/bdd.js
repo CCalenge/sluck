@@ -119,3 +119,10 @@ exports.getMessageByID = function(data, callback){
         callback(rows);
     });
 }
+
+exports.getAllChans = function(callback){
+    connection.query("SELECT * from chans_List", function(err, rows, fields){
+        if (err) return error(err, callback);
+        callback(rows);
+    });
+};

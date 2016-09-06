@@ -88,7 +88,7 @@ exports.getUsersData = function(data,callback){
 };
 
 exports.registerMessage = function(data, callback){
-    connection.query("INSERT INTO chan_"+data.chanID+" (message, userID, date) VALUES ("+connection.escape(data.message)+", "+data.userID+",NOW(6))",
+    connection.query("INSERT INTO chan_"+data.chanID+" (message, userID, date) VALUES ("+connection.escape(data.message)+", "+data.userID+",UNIX_TIMESTAMP(NOW()))",
     function(err, rows, fields){
         if (err){ //Kill the function in case of error
             console.log(err);
@@ -111,7 +111,7 @@ exports.updateUserData = function(data ,callback){
 }
 
 exports.getMessageByID = function(data, callback){
-    connection.query("SELECT message,id,userID,DATE_FORMAT(date,'%d/%c/%Y à %Hh%i') AS date from chan_"+data.chanID+" WHERE id = "+data.id, function(err, rows, fields){
+    connection.query("SELECT * from chan_"+data.chanID+" WHERE id = "+data.id, function(err, rows, fields){
         if (err){ //Kill the function in case of error
             console.log(err);
             return callback(false);

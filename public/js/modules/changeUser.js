@@ -1,6 +1,7 @@
 module.exports = function() {
 
     var User = require('./user');
+    var currentUser = User.getUser();
 
     // click event on close window and currentUserName (top left page)
     $('.closeModal').on('click', function() {
@@ -14,7 +15,6 @@ module.exports = function() {
 
         //get the user, then emit the request to have the bdd data
 
-        var currentUser = User.getUser();
 
         currentUser.socket.emit('askUserInfo', $('#currentUser').html());
 
@@ -97,7 +97,7 @@ module.exports = function() {
 
                     //update the currentUser in the user module;
                     User.updateUser(userData.pseudo,userData.lastPseudo);
-                    
+
                     $(this).css('fontSize', 10).text('modifier');
                     // refresh
                     $('#containerChangeUser').find('input[type=password]').val("");

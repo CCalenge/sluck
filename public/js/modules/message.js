@@ -1,4 +1,7 @@
+
 module.exports = function() {
+
+var date = require('./date.js');
 
     //alert for the empty message
     $('.alert').hide();
@@ -23,7 +26,7 @@ module.exports = function() {
     });
 
     function checkMessage(message) {
-    
+
         if (message.trim() != '') {
             $('.submitMessage').text('+');
             currentUser.socket.emit('registerMessage', {
@@ -41,11 +44,12 @@ module.exports = function() {
     };
 
     function addMessage(data) {
+
         var $clone = $('#containerMessage').clone();
         var User = user.getUserByID(data.userID);
 
         $clone.find('.messageAuthor').html(User.pseudo);
-        $clone.find('.dateMessage').html(data.date);
+        $clone.find('.dateMessage').html(date.datePost(data.date));
         $clone.find('.message').html(data.message);
 
         $clone.appendTo('#messageContainer');

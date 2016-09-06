@@ -46,6 +46,15 @@ exports.getAllUsers = function(){
     return Array.from(allUsers);
 };
 
+exports.updateUser = function(pseudo, lastpseudo){
+    for(var i=0,c=allUsers.length ; i<c ;i++){
+        if(allUsers[i].pseudo == lastpseudo){
+            allUsers[i].pseudo = pseudo;
+            currentUser = pseudo;
+        }
+    }
+};
+
 exports.getUser = function(){
     return currentUser;
 };

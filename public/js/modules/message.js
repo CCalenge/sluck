@@ -23,6 +23,7 @@ module.exports = function() {
     });
 
     function checkMessage(message) {
+    
         if (message.trim() != '') {
             $('.submitMessage').text('+');
             currentUser.socket.emit('registerMessage', {

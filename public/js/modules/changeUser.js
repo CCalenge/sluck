@@ -16,7 +16,7 @@ module.exports = function() {
 
         var currentUser = User.getUser();
 
-        currentUser.socket.emit('askUserInfo',$('#currentUser').html());
+        currentUser.socket.emit('askUserInfo', $('#currentUser').html());
 
         // with the response, we can set some value for the input
         currentUser.socket.on('returnUserData', function(result) {
@@ -74,7 +74,6 @@ module.exports = function() {
 
                 } else {
 
-
                     $('#containerChangeUser').fadeOut();
                     check = true;
 
@@ -92,10 +91,17 @@ module.exports = function() {
                     currentUser.socket.emit('updateUser', userData);
                     //change the currentuserName on the user client side
                     $('#currentUser').text(userData.pseudo);
-                    // error message
+
+                    //change the user pseudo
+                    User.pseudo = userData.pseudo;
+
+                    //update the currentUser in the user module;
+                    User.updateUser(userData.pseudo,userData.lastPseudo);
+                    
                     $(this).css('fontSize', 10).text('modifier');
                     // refresh
                     $('#containerChangeUser').find('input[type=password]').val("");
+
                 };
             });
         });

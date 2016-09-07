@@ -3,7 +3,7 @@
 <!-- recover current user -->
 <% currentUser = locals.currentUser.pseudo %>
 <% listeUsers = locals.usersSorted %>
-
+<% listeChans = locals.chans %>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,13 @@
 
     <div class="mainContainer">
         <aside class="leftContainer">
+            <ul class="listeChans">
+                <% for(i=0 , c= listeChans.length; i<c; i++){%>
+                    <li id="<%= listeChans[i].name %>">
+                        <%= listeChans[i].name %>
+                    </li>
+                    <%}%>
+            </ul>
             <ul class="onlineUsers">
                 <% for(i=0 , c= listeUsers[0].length; i<c; i++){%>
                     <li id="user<%= listeUsers[0][i].id %>">
@@ -34,6 +41,7 @@
                     </li>
                     <%}%>
             </ul>
+
         </aside>
 
         <section class="rightContainer">

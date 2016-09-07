@@ -39,7 +39,7 @@ $hearderHeight: 50px;
 .leftContainer {
     width: 180px;
     background-color: #EFEFEA;
-    color: white;
+    color: black;
     padding-left: 20px;
     border-right: 1px solid grey;
     padding-top: 20px;
@@ -54,6 +54,12 @@ $hearderHeight: 50px;
 
     .offlineUsers {
         color: rgb(177, 177, 177);
+    }
+    .listeChans {
+        cursor: pointer;
+    }
+    .listeChans>li:hover {
+        color:rgb(89, 89, 89);
     }
 }
 

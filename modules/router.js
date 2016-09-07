@@ -15,6 +15,7 @@ var bodyParser = require('body-parser');
 var bdd = require('./bdd.js');
 var views = require('./views.js');
 var user = require ('./user.js');
+var chans = require('./chans.js');
 
 app.use(session({
     cookieName: 'session',
@@ -45,7 +46,8 @@ app.use(function(req, res, next){
 app.get('/', function(req, res) {
     var usersSorted = views.getUsersSorted(req.session.id);
     var currentUser = user.getUserByID(req.session.id);
-    res.render('sluck.ejs',{currentUser:currentUser, usersSorted: usersSorted});
+    var listeChans = chans.getChans();
+    res.render('sluck.ejs',{currentUser:currentUser, usersSorted: usersSorted ,chans: listeChans});
 });
 
 app.get('/login', function(req, res){

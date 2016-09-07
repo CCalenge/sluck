@@ -121,8 +121,22 @@ exports.getMessageByID = function(data, callback){
 }
 
 exports.getAllChans = function(callback){
-    connection.query("SELECT * from chans_List", function(err, rows, fields){
+    connection.query("SELECT * from chans", function(err, rows, fields){
         if (err) return error(err, callback);
         callback(rows);
     });
 };
+
+exports.deleteChan = function(data){
+    connection.query("DELETE * from chans WHERE id =?",[data.id] ,function(err, rows, fields){
+        if (err) return error(err);
+
+    });
+}
+
+exports.createChan = function(data){
+    connection.query("INSERT INTO chans (name) VALUES (data)", function(err, rows, fields){
+        if (err) return error(err, callback);
+
+    });
+}

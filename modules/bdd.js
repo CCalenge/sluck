@@ -7,6 +7,7 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
+    multipleStatements: true,
     host: 'localhost',
     user: 'root',
     password: 'root',
@@ -14,7 +15,7 @@ var connection = mysql.createConnection({
 });
 
 function error(err, callback){
-    console.log(error);
+    console.log(err);
     callback(false);
 };
 
@@ -135,9 +136,29 @@ exports.deleteChan = function(data){
 }
 
 exports.createChan = function(data, callback){
-    console.log(data);
-    connection.query("INSERT INTO chans (name) VALUES ('"+data.newChan+"')", function(err, rows, fields){
+    var chanName = data.newChan;
+
+    var callbackCreation = function(){
+        connection.query("select id from chans where name = '"+chanName+"'", function(err, rows, fields){
+            var chanID = rows[0].id;
+            connection.query("create table message_chan_"+chanID+"(\
+                id INT(11) NOT NULL AUTO_INCREMENT,\
+                date bigint(20) NOT NULL ,\
+                message longtext NOT NULL,\
+                userID INT(11) NOT NULL,\
+                PRIMARY KEY (id))"
+            );
+            connection.query("create table member_chan_"+chanID+"(\
+                id INT(11) NOT NULL AUTO_INCREMENT,\
+                userID INT(11) NOT NULL ,\
+                PRIMARY KEY (id))"
+            );
+        });
+    };
+
+    connection.query("INSERT INTO chans (name) VALUES ('"+chanName+"')", function(err, rows, fields){
         if (err) return error(err, callback);
         callback(data.newChan);
+        callbackCreation();
     });
-}
+};

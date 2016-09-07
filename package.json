@@ -26,8 +26,7 @@
     "buildJS": "npm run buildSluckJS",
     "dev": "npm run watchJS & npm run watchSASS & nodemon --config nodemon.json app.js",
     "devWin": "npm run buildJS && npm run buildCSS && nodemon --config nodemonWin.json",
-    "server": "npm run git && npm run buildJS && node app.js",
-    "install": "node script/install.js"
+    "server": "npm run git && npm run buildJS && node app.js"
   },
   "repository": {
     "type": "git",

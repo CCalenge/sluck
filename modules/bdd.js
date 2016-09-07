@@ -134,9 +134,10 @@ exports.deleteChan = function(data){
     });
 }
 
-exports.createChan = function(data){
-    connection.query("INSERT INTO chans (name) VALUES (data)", function(err, rows, fields){
+exports.createChan = function(data, callback){
+    console.log(data);
+    connection.query("INSERT INTO chans (name) VALUES ('"+data.newChan+"')", function(err, rows, fields){
         if (err) return error(err, callback);
-
+        callback(data.newChan);
     });
 }

@@ -22,5 +22,8 @@ module.exports = function(io){
     });
     socket.on('updateUserPseudo',function(result){
         $('#user'+result.id).text(result.pseudo);
+    });
+    socket.on('newChan', function(result){
+        $('.listeChans').append('<li id='+result.newChan+'>'+result.newChan+'</li>');
     })
 };

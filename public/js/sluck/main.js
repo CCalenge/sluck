@@ -21,5 +21,6 @@ $(document).ready(function(){
 
         require('../modules/message.js')();
         require('../modules/changeUser.js')();
+        require('../modules/addChan.js')();
     });
 });

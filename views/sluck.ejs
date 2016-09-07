@@ -20,6 +20,7 @@
 
     <div class="mainContainer">
         <aside class="leftContainer">
+            <p class="createChanButton">+</p>
             <ul class="listeChans">
                 <% for(i=0 , c= listeChans.length; i<c; i++){%>
                     <li id="<%= listeChans[i].name %>">
@@ -57,6 +58,8 @@
 
     <!-- include -->
     <%- include('changeUser'); %>
+
+    <%- include('chans'); %>
 
     <div id="model" class="hide">
         <%- include('message'); %>

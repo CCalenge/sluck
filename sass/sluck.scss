@@ -48,6 +48,17 @@ $hearderHeight: 50px;
         color: black;
     }
 
+    .createChanButton {
+        display: inline-block;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: all 0.4s;
+    }
+
+    .createChanButton:hover {
+        transform: rotate(360deg);
+    }
+
     .onlineUsers {
         color: rgb(39, 252, 80);
     }
@@ -55,11 +66,13 @@ $hearderHeight: 50px;
     .offlineUsers {
         color: rgb(177, 177, 177);
     }
+
     .listeChans {
         cursor: pointer;
     }
-    .listeChans>li:hover {
-        color:rgb(89, 89, 89);
+
+    .listeChans > li:hover {
+        color: rgb(89, 89, 89);
     }
 }
 
@@ -140,7 +153,6 @@ $hearderHeight: 50px;
     width: 90%;
     @include display(flex);
     // @include justify-content(center);
-
     .avatar {
         @include display(flex);
         // @include justify-content(center);
@@ -156,11 +168,11 @@ $hearderHeight: 50px;
         @include justify-content(center);
         @include align-items(center);
 
-
         .messageAuthor {
             font-weight: bold;
             font-size: 1.1em;
         }
+
         .dateMessage {
             margin-left: 15px;
             color: rgb(149, 149, 149);
@@ -169,15 +181,13 @@ $hearderHeight: 50px;
         }
     }
 
-
-
     .message {
         max-width: 100%;
         word-wrap: break-word;
     }
 }
 
-#containerChangeUser {
+.modal {
     width: 300px;
     height: 350px;
     border-radius: 5px;
@@ -189,45 +199,64 @@ $hearderHeight: 50px;
     margin: 20px;
     top: 50px;
     padding: 30px;
-    .closeModal{
-        height: 20px;
-        position: absolute;
-        right: 30px;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-    .closeModal:hover{
-        transform: scale(1.1,1.1);
-    }
-    .label {
-        display: inline-block;
-        width: 250px;
-    }
-
-    input {
-        border: none;
-        border-radius: 3px;
-    }
-
-    .submitChangeUser {
-        @extend .round_Button;
-        background-color: white;
-        color: $primary_color;
-        width: 55px;
-        height: 55px;
-        position: absolute;
-        right: 20px;
-    }
-    .submitChangeUser:hover{
-        background-color: rgb(254, 244, 6);
-        color: $primary_color;
-    }
 }
-.error{
+
+.closeModal {
+    height: 20px;
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.closeModal:hover {
+    transform: scale(1.1,1.1);
+}
+
+.label {
+    display: inline-block;
+    width: 250px;
+}
+
+input {
+    border: none;
+    border-radius: 3px;
+}
+
+.submitChangeUser {
+    @extend .round_Button;
+    background-color: white;
+    color: $primary_color;
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.submitChangeUser:hover {
+    background-color: rgb(254, 244, 6);
+    color: $primary_color;
+}
+.submitChangeChan{
+    @extend .default_Button;
+    background-color: white;
+    color: $primary_color;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+.cancelChangeChan{
+    @extend .submitChangeChan;
+    right: 100px;
+}
+
+.error {
     opacity: 0;
-    color:rgb(255, 0, 0);
+    color: rgb(255, 0, 0);
     margin-left: 5px;
 }
+
 .show {
-    opacity: 1!important;
+    display: block;
 }

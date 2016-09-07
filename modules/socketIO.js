@@ -20,9 +20,9 @@ module.exports = function(server) {
         socket.on('init', function(userID) {
             User = user.getUserByID(userID); // Init User var
             User.setOnline(socket);
-            bdd.getMessages(1, function(dataArray){
-                socket.emit("messageHistory", dataArray);
-            });
+            // bdd.getMessages(1, function(dataArray){
+            //     socket.emit("messageHistory", dataArray);
+            // });
         });
 
         socket.on('disconnect', function() {
@@ -55,7 +55,6 @@ module.exports = function(server) {
                 });
         })
         socket.on('newChan', function (data){
-
             bdd.createChan(data, function(result){
                 if(result){
                     socket.broadcast.emit('newChan',{newChan: result});

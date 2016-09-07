@@ -11,3 +11,5 @@ public/js/sluck.js
 docs
 docServer.json
 docClient.json
+
+config.js

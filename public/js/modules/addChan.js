@@ -1,10 +1,9 @@
+var User = require('./user');
+var currentUser = User.getUser();
+
 module.exports = function() {
 
-    var User = require('./user');
-
     $(function() {
-
-        var currentUser = User.getUser();
 
         $('.closeModal').on('click', function() {
 

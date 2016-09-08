@@ -18,7 +18,7 @@ function User(data) {
     this.pseudo = data.pseudo;
     this.avatar = null;
     this.online = data.online;
-
+    this.chan = null;
     this.socket = null; // only currentUser
 
     allUsers.push(this);

@@ -52,12 +52,22 @@ module.exports = function(server) {
                     }
                 });
         })
+
         socket.on('newChan', function (data){
             bdd.createChan(data, function(result){
                 if(result){
                     socket.broadcast.emit('newChan',{newChan: result});
                 }
             })
+            bdd.createDBChan(data);
+        })
+
+        socket.on('chanClick',function(data){
+            console.log(data.chan);
+            bdd.getMessages(data.chan,function(result){
+                console.log('result');
+            })
+
         })
 
     });

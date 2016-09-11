@@ -1,0 +1,9 @@
+.sass-cache
+
+config.json
+client/host.js
+node_modules/*
+sass/bourbon/*
+
+public/css/*.map
+.DS_Store

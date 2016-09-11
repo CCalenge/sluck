@@ -1,0 +1,24 @@
+@import "../bourbon/_bourbon.scss";
+@import "../common/color";
+
+.input {
+    padding: 10px;
+
+    font-family: Roboto;
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+
+    color: $color-input-text;
+    background-color: $color-input-background;
+    border-color: $color-input-border;
+
+    @include placeholder {
+        font-family: Roboto;
+    };
+
+    &:focus {
+        border-color: $color-input-border-focus;
+    };
+};

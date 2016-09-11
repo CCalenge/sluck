@@ -1,0 +1,31 @@
+@import "../bourbon/_bourbon.scss";
+@import "../common/color.scss";
+@import "../common/shadow.scss";
+
+.button {
+    padding: 5px 15px;
+    cursor: pointer;
+
+    font-family: Roboto;
+    font-size: 20px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+
+    color: $color-button-text;
+    background-color: $color-button-background;
+    border-color: $color-button-border;
+
+    @include shadow;
+    @include transition(all 0.3s ease-in-out);
+
+    &:hover {
+        color: $color-button-text-hover;
+        border-color: $color-button-border-hover;
+    };
+
+    &:focus {
+        outline: none;
+    };
+};

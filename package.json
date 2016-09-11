@@ -1,0 +1,42 @@
+{
+    "main": "app.js",
+
+    "dependencies": {
+        "client-sessions": "^0.7.0",
+        "ejs": "^2.5.1",
+        "express": "^4.14.0",
+        "mysql": "^2.11.1",
+        "socket.io": "^1.4.8",
+        "nodemon":"^1.10.2",
+        "npm-run-all": "^3.1.0"
+    },
+
+    "scripts": {
+        "install": "node script/install.js",
+        "installDev": "npm install && cd sass && bourbon install",
+
+        "start": "nodemon --config nodemon.json app.js",
+
+        "dev": "npm-run-all --parallel watch:* start",
+
+        "watch": "npm-run-all --parallel watch:*",
+            "watch:LoginJS": "watchify client/pages/login.js -o public/js/login.js",
+            "watch:LoginSASS": "sass --watch sass/login.scss:public/css/login.css --style compressed",
+
+        "build": "npm-run-all build:*",
+            "build:LoginJS": "browserify client/pages/login.js | uglifyjs > public/js/login.js"
+
+    },
+
+    "name": "sluck",
+    "author": "maxfqs maxdef",
+    "version": "0.1.0",
+    "description": "Du Slack avec un U",
+    "license": "ISC",
+
+    "homepage": "https://github.com/Maximums/sluck#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Maximums/sluck.git"
+    }
+}

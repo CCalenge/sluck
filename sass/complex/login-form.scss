@@ -1,0 +1,28 @@
+@import "../bourbon/_bourbon.scss";
+
+@import "../common/color.scss";
+
+@import "../object/input.scss";
+@import "../object/button.scss";
+
+.login-form {
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(column);
+
+    border-radius: 5px;
+    padding: 10px;
+
+    background-color: $color-login-form-background;
+
+    .input {
+        width: 250px;
+        margin: 10px;
+    };
+
+    .button {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    };
+};

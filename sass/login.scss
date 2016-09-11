@@ -1,0 +1,22 @@
+@import "./bourbon/_bourbon.scss";
+@import "./common/reset.scss";
+
+@import "./complex/login-form.scss";
+@import "./complex/login-logo.scss";
+
+
+.login-container {
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(column);
+
+    width: 100%;
+    height: 600px; // Set to fit page height in login.js
+
+    background-color: $color-login-background;
+
+    .login-logo {
+        margin: 15px;
+    };
+};

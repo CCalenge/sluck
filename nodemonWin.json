@@ -1,9 +1,0 @@
-{
-    "ignore": [
-        "public/js/sluck.js"
-    ],
-    "events": {
-        "exit": "npm run buildJS && npm run buildCSS && node app.js"
-    },
-    "ext": "js json scss ejs"
-}

@@ -1,0 +1,24 @@
+@import "../bourbon/_bourbon.scss";
+
+@import "../common/color.scss";
+
+@import "../object/item-chan.scss";
+
+.home-left-container {
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(flex-start);
+    @include flex-direction(column);
+
+
+    height: 100%;
+    width: 250px;
+
+    background-color: $color-home-left-container-background;
+    border-left: solid 5px $color-brand;
+
+    .item-chan-container {
+        width: 100%;
+        overflow: auto;
+    };
+};

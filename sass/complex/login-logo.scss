@@ -1,0 +1,19 @@
+@import "../common/color.scss";
+@import "../common/fonts.scss";
+
+
+.login-logo {
+    text-align: center;
+
+    h1 {
+        font-family: "futura_black";
+        font-size: 8em;
+        color: $color-login-logo-title;
+    };
+
+    p {
+        font-family: "futura_italic";
+        font-size: 1.8em;
+        color: $color-login-logo-subtitle;
+    };
+};

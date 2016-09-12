@@ -1,5 +1,7 @@
 {
-    "ignore": [
-        "public/js/sluck.js"
-    ]
+    "ignore": ["client/host.js", "public/*"],
+    "ext": "js json",
+    "events": {
+        "restart": "npm run build"
+    }
 }

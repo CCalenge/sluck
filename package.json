@@ -1,41 +1,46 @@
 {
-  "name": "sluck",
-  "version": "0.1.0",
-  "description": "Du Slack avec un U",
-  "main": "app.js",
-  "dependencies": {
-    "client-sessions": "^0.7.0",
-    "body-parser": "^1.15.2",
-    "ejs": "^2.5.1",
-    "ent": "^2.2.0",
-    "express": "^4.14.0",
-    "mysql": "^2.11.1",
-    "socket.io": "^1.4.8",
-    "nodemon":"^1.10.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "git": "git pull",
-    "buildSluckJS": "browserify public/js/sluck/main.js | uglifyjs > public/js/sluck.js",
-    "buildCSS": "sass sass/sluck.scss:public/css/sluck.css --style compressed",
-    "watchJS": "watchify public/js/sluck/main.js -o public/js/sluck.js",
-    "watchLoginSass": "sass --watch sass/login.scss:public/css/login.css --style compressed",
-    "watchSluckSass": "sass --watch sass/sluck.scss:public/css/sluck.css --style compressed",
-    "watchSASS": "npm run watchLoginSass & npm run watchSluckSass",
-    "buildJS": "npm run buildSluckJS",
-    "dev": "npm run watchJS & npm run watchSASS & nodemon --config nodemon.json app.js",
-    "devWin": "npm run buildJS && npm run buildCSS && nodemon --config nodemonWin.json",
-    "server": "npm run git && npm run buildJS && node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Maximums/sluck.git"
-  },
-  "author": "maxfqs maxdef",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Maximums/sluck/issues"
-  },
-  "homepage": "https://github.com/Maximums/sluck#readme"
+    "main": "app.js",
+
+    "dependencies": {
+        "client-sessions": "^0.7.0",
+        "body-parser": "^1.15.2",
+        "ejs": "^2.5.1",
+        "express": "^4.14.0",
+        "mysql": "^2.11.1",
+        "socket.io": "^1.4.8",
+        "nodemon":"^1.10.2",
+        "npm-run-all": "^3.1.0"
+    },
+
+    "scripts": {
+        "install": "node script/install.js",
+        "installDev": "npm install && cd sass && bourbon install",
+
+        "start": "nodemon --config nodemon.json app.js",
+
+        "dev": "npm-run-all --parallel watch:* start",
+
+        "watch": "npm-run-all --parallel watch:*",
+            "watch:LoginJS": "watchify client/pages/login.js -o public/js/login.js",
+            "watch:LoginSASS": "sass --watch sass/login.scss:public/css/login.css --style compressed",
+            "watch:HomeJS": "watchify client/pages/home.js -o public/js/home.js",
+            "watch:HomeSASS": "sass --watch sass/home.scss:public/css/home.css --style compressed",
+
+        "build": "npm-run-all build:*",
+            "build:LoginJS": "browserify client/pages/login.js | uglifyjs > public/js/login.js",
+            "build:HomeJS": "browserify client/pages/home.js | uglifyjs > public/js/home.js"
+
+    },
+
+    "name": "sluck",
+    "author": "maxfqs maxdef",
+    "version": "0.1.0",
+    "description": "Du Slack avec un U",
+    "license": "ISC",
+
+    "homepage": "https://github.com/Maximums/sluck#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Maximums/sluck.git"
+    }
 }

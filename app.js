@@ -1,11 +1,21 @@
-var express = require('express');
+var Sluck = require("./server/Sluck.js");
+
+
+// Create client host.js
+var fs = require("fs");
+var stream = fs.createWriteStream("client/host.js");
+stream.once("open", function(fd) {
+    stream.write("module.exports = \""+Sluck.config.host+":"+Sluck.config.port+"\";");
+    stream.end();
+});
+
+
+// Start server
+var express = require("express");
 var app = express();
-var server = require('http').Server(app);
+var server = require("http").Server(app);
 
-app.use(express.static(__dirname + '/public'));
-server.listen(8080);
+app.use(express.static(__dirname + "/public"));
+server.listen(Sluck.config.port);
 
-require("./modules/router.js")(app);
-require("./modules/socketIO.js")(server);
-require("./modules/user.js").createUsers();
-require("./modules/chans.js").createChans();
+Sluck.start(app, server);

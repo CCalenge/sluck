@@ -1,0 +1,33 @@
+@import "../common/color.scss";
+
+
+.item-chan {
+    width: 100%;
+
+    cursor: pointer;
+
+    padding: 3px 0px;
+
+    font-family: Roboto;
+    color: darken($color-item-chan-text, 50%);
+
+    &:hover {
+        background-color: darken($color-brand, 20%);
+        color: $color-item-chan-text;
+    };
+
+    p {
+        padding-left: 20px;
+    };
+};
+
+
+.item-chan-selected {
+    background-color: $color-brand;
+    color: $color-item-chan-text;
+
+    &:hover {
+        background-color: $color-brand;
+        color: $color-item-chan-text;
+    };
+};

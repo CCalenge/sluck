@@ -1,0 +1,8 @@
+@import "./common/reset.scss";
+
+@import "./complex/home-header.scss";
+@import "./complex/home-left-container.scss";
+
+.home-container {
+    height: 500px; // Set to fit page height in home.js
+}

@@ -8,5 +8,5 @@ var app = require("../Sluck.js").app;
 
 
 app.get("/", function(req, res){
-    res.send("home");
+    res.render("home.ejs");
 });

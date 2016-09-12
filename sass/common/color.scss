@@ -1,7 +1,7 @@
 /*-------------------------------------------
 -- COLOR
 -------------------------------------------*/
-$black: #27313B;
+$black: #373737;
 
 $blue: #457FCA;
 
@@ -12,10 +12,13 @@ $red: #F05156;
 $white: #FFFFFF;
 $white-soft: #F5F5F5;
 
+
 /*-------------------------------------------
 -- GLOBAL
 -------------------------------------------*/
+$color-brand: $blue;
 $color-text: $black;
+
 
 /*-------------------------------------------
 -- BUTTON
@@ -48,9 +51,21 @@ $color-input-text: $black;
 
 
 /*-------------------------------------------
+-- ITEM CHAN
+-------------------------------------------*/
+$color-item-chan-text: $white;
+
+
+/*-------------------------------------------
 -- LOGIN
 -------------------------------------------*/
 $color-login-background: $blue;
 $color-login-form-background: $white;
 $color-login-logo-title: $white;
 $color-login-logo-subtitle: $white;
+
+
+/*-------------------------------------------
+-- HOME LEFT CONTAINER
+-------------------------------------------*/
+$color-home-left-container-background: $black;

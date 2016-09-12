@@ -23,9 +23,12 @@
         "watch": "npm-run-all --parallel watch:*",
             "watch:LoginJS": "watchify client/pages/login.js -o public/js/login.js",
             "watch:LoginSASS": "sass --watch sass/login.scss:public/css/login.css --style compressed",
+            "watch:HomeJS": "watchify client/pages/home.js -o public/js/home.js",
+            "watch:HomeSASS": "sass --watch sass/home.scss:public/css/home.css --style compressed",
 
         "build": "npm-run-all build:*",
-            "build:LoginJS": "browserify client/pages/login.js | uglifyjs > public/js/login.js"
+            "build:LoginJS": "browserify client/pages/login.js | uglifyjs > public/js/login.js",
+            "build:HomeJS": "browserify client/pages/home.js | uglifyjs > public/js/home.js"
 
     },
 

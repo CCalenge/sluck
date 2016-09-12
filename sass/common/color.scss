@@ -7,9 +7,15 @@ $blue: #457FCA;
 
 $grey: #B3B3B3;
 
+$red: #F05156;
+
 $white: #FFFFFF;
 $white-soft: #F5F5F5;
 
+/*-------------------------------------------
+-- GLOBAL
+-------------------------------------------*/
+$color-text: $black;
 
 /*-------------------------------------------
 -- BUTTON
@@ -24,12 +30,19 @@ $color-button-border-hover: $blue;
 
 
 /*-------------------------------------------
+-- HINT
+-------------------------------------------*/
+$color-hint-warning: $red;
+
+
+/*-------------------------------------------
 -- INPUT
 -------------------------------------------*/
 $color-input-background: $white-soft;
 
 $color-input-border: $grey;
 $color-input-border-focus: $blue;
+$color-input-border-warning: $red;
 
 $color-input-text: $black;
 

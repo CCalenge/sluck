@@ -1,10 +1,11 @@
-var config = require("./config.json");
+var Sluck = require("./server/Sluck.js");
+
 
 // Create client host.js
 var fs = require("fs");
 var stream = fs.createWriteStream("client/host.js");
 stream.once("open", function(fd) {
-    stream.write("module.exports = \""+config.host+":"+config.port+"\";");
+    stream.write("module.exports = \""+Sluck.config.host+":"+Sluck.config.port+"\";");
     stream.end();
 });
 
@@ -15,8 +16,6 @@ var app = express();
 var server = require("http").Server(app);
 
 app.use(express.static(__dirname + "/public"));
-server.listen(config.port);
+server.listen(Sluck.config.port);
 
-app.get('/', function(req, res){
-    res.render('login.ejs');
-});
+Sluck.start(app, server);

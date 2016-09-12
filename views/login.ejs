@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | SLuck</title>
+    <title>Login | Sluck</title>
     <link rel="stylesheet" href="/css/login.css" media="screen" title="no title" charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,600' rel='stylesheet' type='text/css'>
 </head>
@@ -19,17 +19,23 @@
             <p><em>" du Slack avec un U "</em></p>
         </div>
 
-        <form class="login-form" action="" method="">
-            <input type="text" placeholder="Username" id="input-username" class="input">
-            <input type="password" placeholder="Password" id="input-password" class="input">
+        <% if(locals.error){ %>
+            <div class="hint hint-warning">
+                Wrong username or password
+            </div>
+        <% } %>
+
+        <form class="login-form" action="/login" method="POST">
+            <input type="text" name="username" placeholder="Username" id="input-username" class="input">
+            <input type="password" name="password" placeholder="Password" id="input-password" class="input">
             <button id="button-login" class="button">login</button>
         </form>
 
-    </div>
+    </div><!-- login-container -->
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="socket.io/socket.io.js"></script>
+    <!-- <script src="socket.io/socket.io.js"></script> -->
     <script src="/js/login.js"></script>
 </body>
 

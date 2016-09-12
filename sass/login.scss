@@ -4,6 +4,7 @@
 @import "./complex/login-form.scss";
 @import "./complex/login-logo.scss";
 
+@import "./object/hint.scss";
 
 .login-container {
     @include display(flex);
@@ -12,11 +13,16 @@
     @include flex-direction(column);
 
     width: 100%;
-    height: 600px; // Set to fit page height in login.js
+    min-width: 500px;
+    min-height: 500px; // Set to fit page height in login.js
 
     background-color: $color-login-background;
 
     .login-logo {
         margin: 15px;
+    };
+
+    .hint {
+        margin: 10px;
     };
 };

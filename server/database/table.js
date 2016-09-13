@@ -6,10 +6,8 @@ exports.chans = "\
 ";
 
 exports.chans_members = "\
-    id int(11) NOT NULL AUTO_INCREMENT,\
     chanID int(11) NOT NULL,\
-    userID int(11) NOT NULL,\
-    PRIMARY KEY (id)\
+    userID int(11) NOT NULL\
 ";
 
 exports.chans_messages = "\

@@ -15,6 +15,7 @@
     "scripts": {
         "install": "node script/install.js",
         "installDev": "npm install && cd sass && bourbon install",
+        "installDatabase": "node script/installDatabase.js",
 
         "start": "nodemon --config nodemon.json app.js",
 

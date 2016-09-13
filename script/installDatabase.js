@@ -8,10 +8,10 @@ mysql.createConnection({
     host: "localhost",
     user: config.mysqlUser,
     password: config.mysqlPassword
-}).query("drop database if exists sluck; create database sluck", afterDatabaseCreation);
+}).query("drop database if exists sluck; create database sluck", createTables);
 
 
-function afterDatabaseCreation(){
+function createTables(){
     mysql.createConnection({
         multipleStatements: true,
         host: "localhost",
@@ -19,13 +19,24 @@ function afterDatabaseCreation(){
         password: config.mysqlPassword,
         database: "sluck"
     }).query("\
-        \
         create table users("+table.users+");\
-        insert into users (username, password) VALUES ('admin', 'root');\
-        \
         create table chans("+table.chans+");\
-        insert into chans (name, public) VALUES ('general', 1), ('random', 1)\
-    ", function finishCreation(){
+        create table chans_members("+table.chans_members+");\
+        create table chans_messages("+table.chans_messages+");\
+    ", createChans);
+};
+
+
+function createChans(){
+    var ChanDAO = require("../server/dao/ChanDAO.js");
+    ChanDAO.createChan({name: "general", public: 1});
+    ChanDAO.createChan({name: "random", public: 1}, createAdmin);
+};
+
+
+function createAdmin(){
+    var UserDAO = require("../server/dao/UserDAO.js");
+    UserDAO.createUser({username: "admin", password: "root"}, function(){
         process.exit();
     });
 };

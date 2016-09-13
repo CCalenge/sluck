@@ -23,20 +23,25 @@ function createTables(){
         create table chans("+table.chans+");\
         create table chans_members("+table.chans_members+");\
         create table chans_messages("+table.chans_messages+");\
-    ", createChans);
+    ", createUsers);
+};
+
+
+function createUsers(){
+    var UserDAO = require("../server/dao/UserDAO.js");
+    UserDAO.createUser({username: "admin", password: "root"}, createChans);
 };
 
 
 function createChans(){
     var ChanDAO = require("../server/dao/ChanDAO.js");
     ChanDAO.createChan({name: "general", public: 1});
-    ChanDAO.createChan({name: "random", public: 1}, createAdmin);
+    ChanDAO.createChan({name: "random", public: 1}, endScript);
 };
 
 
-function createAdmin(){
-    var UserDAO = require("../server/dao/UserDAO.js");
-    UserDAO.createUser({username: "admin", password: "root"}, function(){
-        process.exit();
-    });
+function endScript(result){
+    if(result)
+        console.log("> Deployment has been successfully completed");
+    process.exit();
 };

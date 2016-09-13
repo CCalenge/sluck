@@ -4,8 +4,8 @@
  * @module Sluck
 **/
 
-// var user = require("./models/User.js");
-
+var user = require("./models/User.js");
+var chan = require("./models/Chan.js");
 
 function Sluck(){
 
@@ -16,13 +16,11 @@ Sluck.prototype.start = function(app, server){
     this.app = app;
     this.server = server;
     require("./controllers/controller.js");
+
+    user.init();
+    chan.init();
 };
 
-
-// Sluck.prototype.createUser = function(data, callback){
-//     user.create(data, callback);
-//     callback();
-// };
 
 
 module.exports = new Sluck();

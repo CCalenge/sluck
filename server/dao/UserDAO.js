@@ -18,5 +18,10 @@ UserDAO.prototype.createUser = function(data, callback){
     this.query(query, data, callback);
 };
 
+UserDAO.prototype.getAllUsers = function(callback){
+    var query = "select * from users";
+    this.query(query, {}, callback);
+};
+
 
 module.exports = new UserDAO();

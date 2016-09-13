@@ -14,7 +14,14 @@ UserDAO.prototype = require("./DAO.js");
 
 
 UserDAO.prototype.createUser = function(data, callback){
-    var query = "insert into users set ?";
+    // add the new user to all public chans
+    var query = "\
+        insert into users set ?;\
+        set @newUserID = LAST_INSERT_ID();\
+        \
+        insert into chans_members (chanID, userID)\
+        select id, @newUserID from chans where public = 1\
+    ";
     this.query(query, data, callback);
 };
 

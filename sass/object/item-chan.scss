@@ -2,8 +2,6 @@
 
 
 .item-chan {
-    width: 100%;
-
     cursor: pointer;
 
     padding: 3px 0px;
@@ -16,9 +14,6 @@
         color: $color-item-chan-text;
     };
 
-    p {
-        padding-left: 20px;
-    };
 };
 
 

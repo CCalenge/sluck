@@ -1,9 +1,23 @@
 <% chans = locals.chans %>
 
 <div class="home-left-container">
+
+    <div class="home-user-panel">
+        <div class="home-user-panel-avatar">
+            <img src="rsc/avatar/default.png"/>
+        </div>
+
+        <div class="home-user-panel-info">
+            <p>Mad Max</p>
+            <p>je beurre les tartines</p>
+        </div>
+    </div>
+
+
     <div class="item-chan-container">
         <% for(var i in chans){%>
             <div class="item-chan"> <p># <%= chans[i].name%> </p> </div>
         <%}%>
     </div>
+
 </div>

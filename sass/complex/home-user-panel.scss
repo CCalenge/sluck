@@ -1,0 +1,46 @@
+@import "../bourbon/_bourbon.scss";
+@import "../common/color.scss";
+
+
+.home-user-panel {
+    @include display(flex);
+    padding: 5px 0px;
+};
+
+
+.home-user-panel-avatar {
+    @include display(flex);
+    @include align-items(center);
+    height: 100%;
+    width: auto;
+
+    img {
+        height: 60px;
+    };
+};
+
+
+.home-user-panel-info {
+    @include display(flex);
+    @include justify-content(center);
+    @include flex-direction(column);
+
+    height: 100%;
+    margin-left: 10px;
+
+    font-family: Roboto;
+
+
+    p:nth-child(1){ // Name
+        font-size: 16px;
+        font-weight: 600;
+        color: $white;
+        margin-bottom: 3px;
+    };
+
+    p:nth-child(2){ // Role
+        font-size: 14px;
+        font-weight: 400;
+        color: darken($white, 50%);
+    };
+};

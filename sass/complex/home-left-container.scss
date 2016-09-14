@@ -1,24 +1,28 @@
 @import "../bourbon/_bourbon.scss";
-
 @import "../common/color.scss";
-
 @import "../object/item-chan.scss";
+@import "./home-user-panel.scss";
+
+// left padding
+.home-user-panel-avatar,
+.item-chan {
+    padding-left: 10px;
+};
 
 .home-left-container {
-    @include display(flex);
-    @include align-items(center);
-    @include justify-content(flex-start);
-    @include flex-direction(column);
-
-
     height: 100%;
-    width: 250px;
+    width: 240px;
 
     background-color: $color-home-left-container-background;
-    border-left: solid 5px $color-brand;
+
+    .home-user-panel {
+        width: 100%;
+        height: 70px;
+    };
 
     .item-chan-container {
         width: 100%;
-        overflow: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
     };
 };

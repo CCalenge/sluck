@@ -1,0 +1,14 @@
+@import "../common/color.scss";
+
+.icon{
+  width: 30px;
+  height: 30px;
+  color:$black;
+  cursor: pointer;
+  margin: 10px;
+}
+.miniIcon{
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}

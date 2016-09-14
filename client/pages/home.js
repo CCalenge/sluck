@@ -1,4 +1,8 @@
+
+
 $(document).ready(function(){
+
+require('./burgerModal.js');
 
     var $window = $(window);
     var $homeContainer = $(".home-container");
@@ -14,4 +18,6 @@ $(document).ready(function(){
         $(".item-chan").removeClass("item-chan-selected");
         $(this).addClass("item-chan-selected");
     });
+
+
 });

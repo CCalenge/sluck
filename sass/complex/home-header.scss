@@ -1,8 +1,35 @@
+@import "../bourbon/_bourbon.scss";
 @import "../common/color.scss";
+@import "../object/icons.scss";
+@import "../common/hide.scss";
+@import "../common/shape.scss";
+
+
 
 .home-header {
-    height: 50px;
+    position: relative;
+    height: 40px;
     width: 100%;
-
     background-color: $color-brand;
-};
+    color: white;
+    @include display(flex);
+    @include align-items(center);
+    font-family: "Roboto",sans-serif;
+    font-size: 0.7em;
+}
+.burgerContainer{
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    height: 100px;
+    width: 100px;
+}
+.close-modal-burger{
+    position:absolute;
+    right: 10px;
+}
+#messageIcon{
+    position: absolute;
+    right: 20px;
+    top: -5px;
+}

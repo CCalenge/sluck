@@ -10,8 +10,12 @@ try {
         stream.write("{\n\t");
         stream.write("\"host\": \"http://localhost\",\n\t");
         stream.write("\"port\": 8080,\n\n\t");
+
+        stream.write("\"teamName\": \"Team Name\",\n\n\t");
+
         stream.write("\"mysqlUser\": \"user\",\n\t");
         stream.write("\"mysqlPassword\": \"password\"\n");
+
         stream.write("}");
         stream.end();
     });

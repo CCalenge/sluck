@@ -4,22 +4,30 @@
  * @module home
 **/
 
+var config = require("../../config.json");
+
 var app = require("../Sluck.js").app;
 var ChanDAO = require("../dao/ChanDAO.js");
 
-var res = false;
-var data = {};
-
-app.get("/", function(req, newRes){
-    res = newRes;
-    data = {};
-    ChanDAO.getAllChans(function(result){
-        if(result) data.chans = result;
-        render();
+app.get("/", function(req, res){
+    buildData(function(data){
+        res.render("home.ejs", data);
     });
 });
 
+function buildData(callback){
+    var data = {};
+
+    data.teamName = config.teamName;
+    ChanDAO.getAllChans(function(result){
+        if(result) data.chans = result;
+        callback(data);
+    });
+
+};
+
+
 
 function render(){
-    res.render("home.ejs", data);
+
 };

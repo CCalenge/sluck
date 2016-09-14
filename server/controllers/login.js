@@ -5,7 +5,7 @@
 **/
 
 var app = require("../Sluck.js").app;
-var LoginDAO = require("../dao/LoginDAO.js");
+var UserDAO = require("../dao/UserDAO.js");
 
 app.get("/login", function(req, res){
     res.render("login.ejs");
@@ -18,7 +18,7 @@ app.post("/login", function(req, res) {
         password: req.body.password
     };
 
-    LoginDAO.checkLogin(login, function(userID){
+    UserDAO.checkLogin(login, function(userID){
         if(userID){
             req.session.id = userID;
             return res.redirect("/");

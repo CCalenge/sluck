@@ -30,6 +30,20 @@
 }
 #messageIcon{
     position: absolute;
+    right: 60px;
+    top: -5px;
+}
+#profilIcon{
+    position: absolute;
     right: 20px;
     top: -5px;
+}
+.profilContainer{
+
+    height: 100%;
+    width: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius:0px;
+    border-top-left-radius: 0px;
+    background-color: $blue;
 }

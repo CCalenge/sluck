@@ -29,8 +29,9 @@
 
         "build": "npm-run-all build:*",
             "build:LoginJS": "browserify client/pages/login.js | uglifyjs > public/js/login.js",
-            "build:HomeJS": "browserify client/pages/home.js | uglifyjs > public/js/home.js"
+            "build:HomeJS": "browserify client/pages/home.js | uglifyjs > public/js/home.js",
 
+        "server": "killall nodejs || true && git pull && nodejs app.js"
     },
 
     "name": "sluck",

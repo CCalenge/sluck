@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 
-require('./burgerModal.js');
+require('./modal.js');
 
     var $window = $(window);
     var $homeContainer = $(".home-container");

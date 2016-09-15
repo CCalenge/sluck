@@ -1,30 +1,51 @@
 
-var allChans = [];
+var allChans = {};
+var selectedChan = 0; // chan id
 
-function Chan(){
+
+// Constructor
+function Chan(data){
     this.id = data.id;
     this.name = data.name;
+    this.$ = data.$;
+
+    this.registerEventHandler();
+
+    allChans[this.id] = this;
 };
 
 
+// Event Handler
+Chan.prototype.registerEventHandler = function(){
+    this.$.click({Chan: this}, this.onClick);
+};
+
+Chan.prototype.onClick = function(event){
+    var Chan = event.data.Chan;
+    if(selectedChan === Chan.id) return true;
+
+    // Deselect former one
+    if(selectedChan != 0){
+        allChans[selectedChan].$.removeClass("item-chan-selected");
+    };
+
+    Chan.$.addClass("item-chan-selected");
+    selectedChan = Chan.id;
+};
+
+
+// Init
 exports.init = function(){
-    console.log("init");
+    $(".item-chan").each(addChan);
 };
 
+function addChan(){
+    var data = {};
+    var $this = $(this);
 
-function getChanID($object){
-    return $object.attr("id").replace("chan", "")
+    data.id = $this.attr("id").replace("chan", "");
+    data.name = $this.html();
+    data.$ = $this;
+
+    new Chan(data);
 };
-
-
-function openChan($chan){
-    var chanID = getChanID($chan);
-    var name = $chan.html();
-    $(".home-channel-header-title").html(name)
-};
-
-$(".item-chan").click(function(){
-    openChan($(this));
-    $(".item-chan").removeClass("item-chan-selected");
-    $(this).addClass("item-chan-selected");
-});

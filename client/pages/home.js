@@ -1,9 +1,6 @@
-
-
 $(document).ready(function(){
 
-
-    require("../models/Chan.js");
+    require("../models/Chan.js").init();
     require('./modal.js');
 
     var $window = $(window);

@@ -20,6 +20,8 @@ function createTables(){
         database: "sluck"
     }).query("\
         create table users("+table.users+");\
+        create table users_messages("+table.users_messages+");\
+        create table users_starred_chans("+table.users_starred_chans+");\
         create table chans("+table.chans+");\
         create table chans_members("+table.chans_members+");\
         create table chans_messages("+table.chans_messages+");\

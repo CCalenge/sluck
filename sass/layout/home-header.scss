@@ -1,6 +1,6 @@
 @import "../bourbon/_bourbon.scss";
 @import "../common/color.scss";
-@import "../object/icons.scss";
+@import "../object/icons_avatar.scss";
 @import "../common/hide.scss";
 @import "../common/shape.scss";
 
@@ -15,19 +15,38 @@
     font-family: "Roboto",sans-serif;
     font-size: 0.7em;
 }
-
+// ==burger menu content------------------------
 #burgerContainer {
     position: absolute;
     top: 40px;
     left: 5px;
-    height: 100px;
-    width: 100px;
+    height: auto;
+    width: 250px;
+    padding: 20px;
+    font-size: 1.3em;
+    .burger_Links{
+        cursor:pointer;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 3px;
+        transition: all 0.2s;
+    }
+    .burger_Links:hover{
+        background-color: $blue;
+        color: white;
+    }
+    .currentUser{
+        @include display(flex);
+        @include align-items(center);
+        margin-bottom: 20px;
+        .current_User_Name{
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    }
 }
 
-.close-modal-burger {
-    position: absolute;
-    right: 10px;
-}
+//----------------------------------------------
 
 #burgerMenu {
     opacity: 0.8;

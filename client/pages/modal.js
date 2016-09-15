@@ -2,21 +2,16 @@
 
     // burger Menu open/close---------------------------------
 
-    var initBurger = false;
-
-    if (initBurger === false) {
         $('#burgerMenu').on('click', function() {
-            initBurger = true;
+
             $('#burgerContainer').slideToggle('fast');
 
         })
 
-    }
-
     $(window).on('click', function(e) {
 
-        if (e.target.id !== 'burgerMenu' && e.target.id !== 'burgerContainer' && e.target.id !== 'profilIcon' && initBurger === true) {
-            initBurger = false;
+        if (e.target.id !== 'burgerMenu' && e.target.id !== 'burgerContainer' && e.target.id !== 'profilIcon' && $('#burgerContainer').css('display') == 'block') {
+
             $('#burgerContainer').slideToggle('fast');
 
         }

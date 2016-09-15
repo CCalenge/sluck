@@ -1,7 +1,9 @@
 @import "../bourbon/_bourbon.scss";
 @import "../common/color.scss";
+
+@import "../complex/home-user-panel.scss";
 @import "../object/item-chan.scss";
-@import "./home-user-panel.scss";
+
 
 // left padding
 .home-user-panel-avatar,

@@ -2,7 +2,9 @@
 
 $(document).ready(function(){
 
-require('./modal.js');
+
+    require("../models/Chan.js");
+    require('./modal.js');
 
     var $window = $(window);
     var $homeContainer = $(".home-container");
@@ -12,12 +14,4 @@ require('./modal.js');
     $window.resize(function() {
         $homeContainer.height($window.height() - headerHeight);
     });
-
-
-    $(".item-chan").click(function(){
-        $(".item-chan").removeClass("item-chan-selected");
-        $(this).addClass("item-chan-selected");
-    });
-
-
 });

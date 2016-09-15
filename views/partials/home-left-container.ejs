@@ -16,7 +16,7 @@
 
     <div class="item-chan-container">
         <% for(var i in chans){%>
-            <div class="item-chan"> <p># <%= chans[i].name%> </p> </div>
+            <div id="chan<%= chans[i].id%>" class="item-chan"> <p># <%= chans[i].name%> </p> </div>
         <%}%>
     </div>
 

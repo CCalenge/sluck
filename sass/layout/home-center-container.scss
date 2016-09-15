@@ -2,5 +2,5 @@
 
 
 .home-center-container {
-    flex: 1;
+    @include flex-grow(1);
 };
